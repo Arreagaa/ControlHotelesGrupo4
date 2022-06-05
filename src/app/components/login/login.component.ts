@@ -70,9 +70,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("identidad", JSON.stringify(response.usuario))
           console.log(respuesta);
           if(response.usuario.rol == 'ROL_EMPRESA'){
-            this._router.navigate(['/Empresa/Dashboard'])
+            this._router.navigate(['/Usuario/Dashboard'])
           }else{
-            this._router.navigate(['/Admin/Empresa'])
+            this._router.navigate(['/Admin/Hotel'])
           }
         });
         Swal.fire({

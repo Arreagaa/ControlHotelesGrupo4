@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { ProductosEmpresaService } from 'src/app/services/productos-empresa.service';
+import { HabitacionesService } from 'src/app/services/habitaciones.service';
 import { ProductosEmpresa } from 'src/app/models/productosEmpresa.model';
 import { ProductosSucursal } from 'src/app/models/productosSucursal.model';
 
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-productos-e',
-  templateUrl: './productos-e.component.html',
-  styleUrls: ['./productos-e.component.scss'],
-  providers: [ ProductosEmpresaService, UsuarioService ]
+  selector: 'app-habitaciones',
+  templateUrl: './habitaciones.component.html',
+  styleUrls: ['./habitaciones.component.scss'],
+  providers: [ HabitacionesService, UsuarioService ]
 })
-export class ProductosEComponent implements OnInit {
+export class HabitacionesComponent implements OnInit {
 
   public token;
   public buscar;
@@ -23,7 +23,7 @@ export class ProductosEComponent implements OnInit {
   public productosSucursalModelPost: ProductosSucursal;
   public productosEmpresaModelId: ProductosEmpresa;
 
-  constructor(private _productosEmpresaService: ProductosEmpresaService, private _usuarioService: UsuarioService) {
+  constructor(private _habitacionesService: HabitacionesService, private _usuarioService: UsuarioService) {
     this.productosEmpresaModelPost = new ProductosEmpresa('','', '',0, '');
     this.productosEmpresaModelId = new ProductosEmpresa('','','',0, '');
     this.productosSucursalModelPost = new ProductosSucursal('','',0,'',0, '','');
@@ -35,7 +35,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   getProductosEmpresa(){
-    this._productosEmpresaService.obtenerProductosEmpresa(this.token).subscribe(
+    this._habitacionesService.obtenerProductosEmpresa(this.token).subscribe(
       (response) => {
         this.productosEmpresaModelGet = response.productos;
         console.log(response);
@@ -48,7 +48,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   getProductosEmpresaId(idSucursal){
-    this._productosEmpresaService.obtenerProductosEmpresaId(idSucursal, this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.obtenerProductosEmpresaId(idSucursal, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productosEmpresaModelId = response.productos;
         console.log(response);
@@ -61,7 +61,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   sendProductosEmpresa(sendForm){
-    this._productosEmpresaService.enviarProductosSucursal(this.productosSucursalModelPost, this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.enviarProductosSucursal(this.productosSucursalModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getProductosEmpresa();
@@ -86,7 +86,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   postProductosEmpresa(addForm){
-    this._productosEmpresaService.agregarProductoEmpresa(this.productosEmpresaModelPost, this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.agregarProductoEmpresa(this.productosEmpresaModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getProductosEmpresa();
@@ -111,7 +111,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   deleteProductosEmpresa(idSucursal) {
-    this._productosEmpresaService.eliminarProductosEmpresa(idSucursal, this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.eliminarProductosEmpresa(idSucursal, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getProductosEmpresa();
@@ -124,7 +124,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   putProductosEmpresa(){
-    this._productosEmpresaService.editarProductosEmpresa(this.productosEmpresaModelId, this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.editarProductosEmpresa(this.productosEmpresaModelId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getProductosEmpresa();
@@ -148,7 +148,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   getProductosStockEmpresa(){
-    this._productosEmpresaService.obtenerStockProductoEmpresa(this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.obtenerStockProductoEmpresa(this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productosEmpresaModelGet = response.productos;
 
@@ -162,7 +162,7 @@ export class ProductosEComponent implements OnInit {
   }
 
   getProductosStockEmpresaMenor(){
-    this._productosEmpresaService.obtenerStockProductosEmpresaMenor(this._usuarioService.obtenerToken()).subscribe(
+    this._habitacionesService.obtenerStockProductosEmpresaMenor(this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productosEmpresaModelGet = response.productos;
 

@@ -6,7 +6,7 @@ import { Empresa } from '../models/empresas.model';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresasService {
+export class HotelService {
   public url: String = 'http://localhost:3000/api';
   public headersVariable = new HttpHeaders().set('Content-Type','application/json');
 

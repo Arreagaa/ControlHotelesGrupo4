@@ -6,7 +6,7 @@ import { ProductosSucursal } from '../models/productosSucursal.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductosSucursalService {
+export class EventosService {
   public url: String = 'http://localhost:3000/api';
   public headersVariable = new HttpHeaders().set('Content-Type','application/json');
 

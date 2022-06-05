@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaGuard implements CanActivate {
+export class UsuarioGuard implements CanActivate {
   public identidad;
   constructor(
     private _router: Router

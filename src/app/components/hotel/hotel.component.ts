@@ -2,17 +2,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 //EMPRESA
 import { Empresa } from 'src/app/models/empresas.model';
-import { EmpresasService } from 'src/app/services/empresas.service';
+import { HotelService } from 'src/app/services/hotel.service';
 
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-empresas',
-  templateUrl: './empresa.component.html',
-  styleUrls: ['./empresa.component.scss'],
-  providers: [ EmpresasService, UsuarioService ]
+  selector: 'app-hotel',
+  templateUrl: './hotel.component.html',
+  styleUrls: ['./hotel.component.scss'],
+  providers: [ HotelService, UsuarioService ]
 })
-export class EmpresaComponent implements OnInit {
+export class HotelComponent implements OnInit {
 
   public token;
 
@@ -21,7 +21,7 @@ export class EmpresaComponent implements OnInit {
   public empresaModelPost: Empresa;
   public empresaModelId: Empresa;
 
-  constructor(private _empresaService: EmpresasService, private _usuarioService: UsuarioService) {
+  constructor(private _hotelService: HotelService, private _usuarioService: UsuarioService) {
     this.empresaModelPost = new Empresa('','', '','', '', '','');
     this.empresaModelId = new Empresa('','','','','','','');
     this.token = this._usuarioService.obtenerToken();
@@ -32,7 +32,7 @@ export class EmpresaComponent implements OnInit {
   }
 
   getEmpresas(){
-    this._empresaService.obtenerEmpresas(this.token).subscribe(
+    this._hotelService.obtenerEmpresas(this.token).subscribe(
       (response) => {
         this.empresaModelGet = response.usuarios;
         console.log(response);
@@ -45,7 +45,7 @@ export class EmpresaComponent implements OnInit {
   }
 
   getEmpresaId(idEmpresa){
-    this._empresaService.obtenerEmpresaId(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
+    this._hotelService.obtenerEmpresaId(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.empresaModelId = response.usuarios;
         console.log(response);
@@ -58,7 +58,7 @@ export class EmpresaComponent implements OnInit {
   }
 
   postEmpresas(addForm){
-    this._empresaService.agregarEmpresa(this.empresaModelPost, this._usuarioService.obtenerToken()).subscribe(
+    this._hotelService.agregarEmpresa(this.empresaModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getEmpresas();
@@ -83,7 +83,7 @@ export class EmpresaComponent implements OnInit {
   }
 
   deleteEmpresa(idEmpresa) {
-    this._empresaService.eliminarEmpresa(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
+    this._hotelService.eliminarEmpresa(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getEmpresas();
@@ -96,7 +96,7 @@ export class EmpresaComponent implements OnInit {
   }
 
   putEmpresa(){
-    this._empresaService.editarEmpresa(this.empresaModelId, this._usuarioService.obtenerToken()).subscribe(
+    this._hotelService.editarEmpresa(this.empresaModelId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getEmpresas();
@@ -119,3 +119,4 @@ export class EmpresaComponent implements OnInit {
     )
   }
 }
+

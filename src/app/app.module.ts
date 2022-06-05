@@ -12,15 +12,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { EmpresaComponent } from './components/empresa/empresa.component';
-import { ProductosEComponent } from './components/productos-e/productos-e.component';
-import { VerEmpresaComponent } from './components/ver-empresa/ver-empresa.component';
-import { ProductosSComponent } from './components/productos-s/productos-s.component';
 import { DashboardInicioComponent } from './components/dashboard-inicio/dashboard-inicio.component';
-//import { GraficaComponent } from './components/grafica/grafica.component';
+
+import { HotelComponent } from './components/hotel/hotel.component';
+import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
+import { EventosComponent } from './components/eventos/eventos.component';
+
 import { ChartsModule } from '@rinminase/ng-charts';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
+
 
 @NgModule({
   declarations: [
@@ -31,14 +32,13 @@ import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
     DashboardComponent,
     NavbarComponent,
     SucursalesComponent,
-    EmpresaComponent,
-    ProductosEComponent,
-    VerEmpresaComponent,
-    ProductosSComponent,
     DashboardInicioComponent,
     BuscarPipe,
     BuscarPSucursalPipe,
-    //GraficaComponent
+
+    HotelComponent,
+    HabitacionesComponent,
+    EventosComponent
   ],
   imports: [
     BrowserModule,
