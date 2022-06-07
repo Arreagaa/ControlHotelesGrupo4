@@ -21,6 +21,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { ChartsModule } from '@rinminase/ng-charts';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
+import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
 
     HotelComponent,
     HabitacionesComponent,
-    EventosComponent
+    EventosComponent,
+    PerfilClienteComponent
   ],
   imports: [
     BrowserModule,

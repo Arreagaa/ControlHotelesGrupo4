@@ -9,6 +9,7 @@ import { DashboardInicioComponent } from './components/dashboard-inicio/dashboar
 import { HotelComponent } from './components/hotel/hotel.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 import { EventosComponent } from './components/eventos/eventos.component';
+import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'Registro', component: RegistroComponent},
   {path: 'DashboardInicio', component: DashboardInicioComponent},
   {path: 'Inicio', component: InicioComponent},
+  {path: 'PerfilCliente', component: PerfilClienteComponent},
 
   {
     path: 'Usuario', canActivate: [UsuarioGuard], children:[
