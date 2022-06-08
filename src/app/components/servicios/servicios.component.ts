@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventosService } from 'src/app/services/eventos.service';
+import { ServiciosService } from 'src/app/services/servicios.service';
 //SUCURSALES
 import { ProductosSucursal } from 'src/app/models/productosSucursal.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss'],
-  providers: [ EventosService, UsuarioService ]
+  selector: 'app-servicios',
+  templateUrl: './servicios.component.html',
+  styleUrls: ['./servicios.component.scss'],
+  providers: [ ServiciosService, UsuarioService ]
 })
-export class EventosComponent implements OnInit {
+export class ServiciosComponent implements OnInit {
 
   public buscarPSucursal;
 
@@ -42,7 +42,7 @@ export class EventosComponent implements OnInit {
   public productoSucursalModelPost: ProductosSucursal;
   public productoSucursalModeGetlId: ProductosSucursal;
 
-  constructor(private _eventosService: EventosService, public _usuarioService: UsuarioService,
+  constructor(private _serviciosService: ServiciosService, public _usuarioService: UsuarioService,
     public _activatedRoute: ActivatedRoute) {
     this.productoSucursalModelPost = new ProductosSucursal('','',0,'',0,'','');
     this.productoSucursalModeGetlId = new ProductosSucursal('','',0,'',0,'','');
@@ -60,7 +60,7 @@ export class EventosComponent implements OnInit {
 
   getSucursales(idSucursal){
     this.productoSucursalModelId = [];
-    this._eventosService.obtenerProductosSucursal(idSucursal, this.token).subscribe(
+    this._serviciosService.obtenerProductosSucursal(idSucursal, this.token).subscribe(
       (response) => {
         this.productoSucursalModelId = response.productosSucursal;
         console.log(response.productosSucursal);
@@ -87,7 +87,7 @@ export class EventosComponent implements OnInit {
   }
 
   getProductosEmpresaId(idSucursal){
-    this._eventosService.obtenerProductosSucursalId(idSucursal, this._usuarioService.obtenerToken()).subscribe(
+    this._serviciosService.obtenerProductosSucursalId(idSucursal, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productoSucursalModeGetlId = response.productosSucursal;
         console.log(response);
@@ -100,7 +100,7 @@ export class EventosComponent implements OnInit {
   }
 
   getProductosStockSucursal(){
-    this._eventosService.obtenerStockProductosSucursal(this._usuarioService.obtenerToken()).subscribe(
+    this._serviciosService.obtenerStockProductosSucursal(this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productoSucursalModelId = response.productosSucursal;
 
@@ -114,7 +114,7 @@ export class EventosComponent implements OnInit {
   }
 
   getProductosStockSucursalMenor(){
-    this._eventosService.obtenerStockProductosSucursalMenor(this._usuarioService.obtenerToken()).subscribe(
+    this._serviciosService.obtenerStockProductosSucursalMenor(this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.productoSucursalModelId = response.productosSucursal;
 
@@ -128,7 +128,7 @@ export class EventosComponent implements OnInit {
   }
 
   putProductosSucursal(){
-    this._eventosService.editarProductosSucursal(this.productoSucursalModeGetlId, this._usuarioService.obtenerToken()).subscribe(
+    this._serviciosService.editarProductosSucursal(this.productoSucursalModeGetlId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getSucursales(this.idSucursal.idSucursal);
@@ -154,4 +154,5 @@ export class EventosComponent implements OnInit {
   }
 
 }
+
 

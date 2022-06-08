@@ -8,7 +8,7 @@ import { DashboardInicioComponent } from './components/dashboard-inicio/dashboar
 
 import { HotelComponent } from './components/hotel/hotel.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
-import { EventosComponent } from './components/eventos/eventos.component';
+import { ServiciosComponent } from './components/servicios/servicios.component';
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 
 import { UsuarioGuard } from './services/usuario.guard';
@@ -41,7 +41,7 @@ const routes: Routes = [
       {path: 'Inicio', component: InicioComponent},
       {path: 'Dashboard', component: DashboardComponent},
       {path:'Habitaciones', component: HabitacionesComponent},
-      {path:'Eventos/:idSucursal',component: EventosComponent}
+      {path:'Servicios/:idSucursal',component: ServiciosComponent}
     ]
   },
   {

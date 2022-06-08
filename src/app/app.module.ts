@@ -16,12 +16,13 @@ import { DashboardInicioComponent } from './components/dashboard-inicio/dashboar
 
 import { HotelComponent } from './components/hotel/hotel.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
-import { EventosComponent } from './components/eventos/eventos.component';
+import { ServiciosComponent } from './components/servicios/servicios.component';
 
 import { ChartsModule } from '@rinminase/ng-charts';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
+
 
 
 @NgModule({
@@ -39,8 +40,8 @@ import { PerfilClienteComponent } from './components/perfil-cliente/perfil-clien
 
     HotelComponent,
     HabitacionesComponent,
-    EventosComponent,
-    PerfilClienteComponent
+    PerfilClienteComponent,
+    ServiciosComponent,
   ],
   imports: [
     BrowserModule,
