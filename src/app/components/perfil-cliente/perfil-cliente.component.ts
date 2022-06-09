@@ -62,12 +62,36 @@ export class PerfilClienteComponent implements OnInit {
           text: '¡Cambios Realizados!',
           footer: '<a>Esperamos que todo sea de tu agrado.</a>'
         })
-        this.getClienteId(this.id)
+        //this.getClienteId(this.id)
         this.identidad = this._usuarioService.obtenerIdentidad();
 
       },
       error: (err)=> console.log(<any>err)
     });
+  }
+
+  deleteUser() {
+    this._usuarioService.deleteUser(this.user._id, this.user,this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+
+        //localStorage.setItem('identidad', JSON.stringify(response.usuarios));
+        localStorage.clear()
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Has Eliminado tú Perfil',
+          text: '¡Cambios Realizados!',
+          footer: '<a>Esperamos que todo sea de tu agrado.</a>'
+        })
+        //this.getClienteId(this.id)
+        this.identidad = this._usuarioService.obtenerIdentidad();
+
+      },
+      (error)=>{
+        console.log(<any>error);
+
+      }
+    )
   }
 
 }

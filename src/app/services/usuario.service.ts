@@ -68,4 +68,10 @@ export class UsuarioService {
     return this._http.put(this.url + '/editarClientePerfil/'+ id, params, {headers: headersToken});
   }
 
+  deleteUser(id, params, token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.delete(this.url + '/eliminarClientePerfil/' + id, { headers: headersToken })
+  }
+
 }

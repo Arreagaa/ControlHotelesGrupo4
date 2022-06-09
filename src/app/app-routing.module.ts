@@ -34,14 +34,14 @@ const routes: Routes = [
   {path: 'Registro', component: RegistroComponent},
   {path: 'DashboardInicio', component: DashboardInicioComponent},
   {path: 'Inicio', component: InicioComponent},
-  {path: 'PerfilCliente', component: PerfilClienteComponent},
 
   {
     path: 'Usuario', canActivate: [UsuarioGuard], children:[
       {path: 'Inicio', component: InicioComponent},
       {path: 'Dashboard', component: DashboardComponent},
       {path:'Habitaciones', component: HabitacionesComponent},
-      {path:'Servicios/:idSucursal',component: ServiciosComponent}
+      {path:'Servicios/:idSucursal',component: ServiciosComponent},
+      {path: 'PerfilCliente', component: PerfilClienteComponent},
     ]
   },
   {
