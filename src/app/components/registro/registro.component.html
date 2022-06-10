@@ -42,31 +42,34 @@
                     </div>
                   </div>
 
-                  <label class="form-label" for="form3Example8">Dirección</label>
-                  <div class="form-outline mb-4">
-                    <input type="email" placeholder="Dirección" id="form3Example8"
-                      class="form-control form-control-lg" />
-                  </div>
-
                   <div class="row">
-                    <a href="https://aprende.guatemala.com/historia/geografia/mapa-municipios-del-departamento-de-guatemala/"
-                      target="_blank"><label class="form-label" for="form3Example1m">Nombre del Municipio</label></a>
+                    <label class="form-label" for="form3Example1m">Dirección </label>
                     <div class="mb-4">
                       <div class="form-outline">
-                        <input type="text" placeholder="Municipio" class="form-control form-control-lg"
-                          id="inputMunicipio" name="municipio" #municipio="ngModel"
-                          [(ngModel)]="usuarioModelPost.municipio" required />
-                        <div [hidden]="municipio.valid || municipio.pristine" class="alert alert-danger">Se requiere un
-                          Municipio para continuar.
+                        <input type="text" placeholder="Dirección Concreta" class="form-control form-control-lg"
+                          id="inputDirección" name="dirección" #direccion="ngModel"
+                          [(ngModel)]="usuarioModelPost.direccion" required />
+                        <div [hidden]="direccion.valid || direccion.pristine" class="alert alert-danger">Se requiere su Direcciónpara continuar.
                         </div>
                       </div>
                     </div>
                   </div>
 
-
+                  <div class="row">
+                    <label class="form-label" for="form3Example1m">País o Ubicación</label>
+                    <div class="mb-4">
+                      <div class="form-outline">
+                        <input type="text" placeholder="Guatemala" class="form-control form-control-lg"
+                          id="inputPais" name="pais" #pais="ngModel"
+                          [(ngModel)]="usuarioModelPost.pais" required />
+                        <div [hidden]="pais.valid || pais.pristine" class="alert alert-danger">Se requiere su Ubicación para continuar.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example90">Email</label>
+                    <label class="form-label" for="form3Example90">Correo de Contacto</label>
                     <input type="email" placeholder="@gmail.com" id="form3Example90"
                       class="form-control form-control-lg" id="inputEmail" name="email" #email="ngModel"
                       [(ngModel)]="usuarioModelPost.email" required />
@@ -89,19 +92,14 @@
                   <br>
 
                   <div class="d-flex justify-content-end pt-3">
-                    <button type="button" class="btn btn-primary btn-lg ms-2" (click)="postUsuarios()"
-                      routerLink="/Login">
-                      Registar Usuario
-                    </button>
-                    <button type="button" class="btn btn-primary btn-lg ms-2" (click)="postUsuarios()"
-                      routerLink="/Login">
-                      Registar Hotel
-                    </button>
-                  </div>
-                  <br>
-                  <div class="d-flex justify-content-end pt-3">
+
                     <button type="button" class="btn btn-primary-r btn-lg" routerLink="/Inicio">Regresar</button>
+
+                    <button type="button" class="btn btn-primary btn-lg ms-2" (click)="postUsuarios()" routerLink="/Login">
+                      Registar
+                    </button>
                   </div>
+
                 </div>
               </div>
             </div>

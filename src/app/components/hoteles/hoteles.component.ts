@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 //EMPRESA
-import { Empresa } from 'src/app/models/empresas.model';
-import { HotelService } from 'src/app/services/hotel.service';
+import { Hotel } from 'src/app/models/hotel.model';
+import { HotelesService } from 'src/app/services/hoteles.service';
 
 import Swal from 'sweetalert2'
 
@@ -10,33 +10,33 @@ import Swal from 'sweetalert2'
   selector: 'app-hoteles',
   templateUrl: './hoteles.component.html',
   styleUrls: ['./hoteles.component.scss'],
-  providers: [ HotelService, UsuarioService ]
+  providers: [ HotelesService, UsuarioService ]
 })
 export class HotelesComponent implements OnInit {
 
   public token;
 
   //Empresa
-  public empresaModelGet: Empresa;
-  public empresaModelPost: Empresa;
-  public empresaModelId: Empresa;
+  public hotelModelGet: Hotel;
+  //public empresaModelPost: Empresa;
+  //public empresaModelId: Empresa;
 
-  constructor(private _hotelService: HotelService, public _usuarioService: UsuarioService) {
-    this.empresaModelPost = new Empresa('','', '','', '', '','');
-    this.empresaModelId = new Empresa('','','','','','','');
+  constructor(private _hotelesService: HotelesService, public _usuarioService: UsuarioService) {
+    //this.empresaModelPost = new Empresa('','', '','', '', '','');
+    //this.empresaModelId = new Empresa('','','','','','','');
     this.token = this._usuarioService.obtenerToken();
   }
 
   ngOnInit(): void {
-    this.getEmpresas();
+    this.getHoteles();
   }
 
-  getEmpresas(){
-    this._hotelService.obtenerEmpresas(this.token).subscribe(
+  getHoteles(){
+    this._hotelesService.obtenerHoteles().subscribe(
       (response) => {
-        this.empresaModelGet = response.usuarios;
+        this.hotelModelGet = response.hoteles;
         console.log(response);
-        console.log(this.empresaModelGet);
+        console.log(this.hotelModelGet);
       },
       (error)=>{
         console.log(<any>error)
@@ -44,7 +44,7 @@ export class HotelesComponent implements OnInit {
     )
   }
 
-  getEmpresaId(idEmpresa){
+ /* getEmpresaId(idEmpresa){
     this._hotelService.obtenerEmpresaId(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.empresaModelId = response.usuarios;
@@ -117,7 +117,7 @@ export class HotelesComponent implements OnInit {
         })
       }
     )
-  }
+  }*/
 }
 
 

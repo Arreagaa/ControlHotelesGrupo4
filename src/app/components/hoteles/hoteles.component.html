@@ -95,29 +95,36 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-12 col-md-4" *ngFor="let emp of empresaModelGet">
-        <div class="card text-center mb-3">
-          <div class="card mb-2" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="https://p4.wallpaperbetter.com/wallpaper/202/251/688/building-architecture-vertical-wallpaper-preview.jpg" class="img-fluid rounded-start" alt="">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title" routerLinkActive="active">{{ emp.nombre }}</h5>
-                  <p class="card-text">Empresa de tipo {{emp.tipo}}, esta ubicada en el Municipio de {{emp.municipio}}, Guatemala.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Contacto por {{ emp.email }}</small></p>
-                  <div class="space md-4">
-                    <a type="button" class="card-link" data-bs-toggle="modal" data-bs-target="#modalEditarEmpresa" (click)="getEmpresaId(emp._id)"><i class="bi bi-pencil-square"></i> Modificar</a>
-                    <a [routerLink]="['/Admin/Dashboard', emp._id]" class="card-link" routerLinkActive="active"> <i class="bi bi-shop"></i> Sucuarsales</a>
-                   <!-- <a [routerLink]="['/verEmpresa', emp._id]" class="card-link" routerLinkActive="active"> <i class="bi bi-shop"></i> Sucuarsales</a>-->
-                </div>
-                </div>
-              </div>
+      <div class="card mb-3 text-center" style="max-width: 540px;" *ngFor="let hotel of hotelModelGet">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://www.xtrafondos.com/wallpapers/vertical/edificios-en-ciudad-9082.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title" style="text-align: center;" >{{ hotel.nombreHotel }}</h4>
+              <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
+
+              <br>
+              <p class="card-text" style="text-align: center;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio
+              siempre al tanto de los Clientes, precios de Q.{{ hotel.precioHabitacion }}.</p>
+              <br>
+
+              <p class="card-text" style="text-align:center;">¡Llama ya al {{ hotel.telefono }}!</p>
+
+              <!--
+              <a type="button" class="card-link" style="justify-items: center;" data-bs-toggle="modal" data-bs-target="#modalEditarSucursal" (click)="getSucursalId(sur._id)"
+                *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_EMPRESA'"><i class="bi bi-pencil-square"></i> Modificar</a>
+              <a type="button" class="card-link" (click)="deleteSucursal(sur._id)" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_EMPRESA'"><i class="bi bi-file-earmark-minus"></i> Eliminar</a>
+              -->
+
+              <!--
+                BOTONES DEL ADMIN DESABILITADOS
+              <a type="button" class="card-linkDis" style="justify-items: center;" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'" aria-disabled="true"><i class="bi bi-pencil-square"></i> Modificar</a>
+              <a type="button" class="card-linkDis"  *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'" aria-disabled="true"><i class="bi bi-file-earmark-minus"></i> Eliminar</a>
+                -->
             </div>
           </div>
-          <button type="button" class="btn btn-primary" (click)="deleteEmpresa(emp._id)">Eliminar</button>
         </div>
       </div>
     </div>

@@ -55,12 +55,19 @@ export class UsuarioService {
   agregarUsuario(modeloUsuario: Usuario): Observable<any> {
     let parametros = JSON.stringify(modeloUsuario);
 
-    return this._http.post(this.url + '/registrarUsuario', parametros, {headers: this.headersVariable})
+    return this._http.post(this.url + '/registrarCliente', parametros, {headers: this.headersVariable})
+  }
+
+  obtenerClientes(token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    return this._http.get(this.url + '/obtenerClientes', { headers: headersToken })
+    //return this._http.get(this.url + '/obtenerEmpresas', { headers: this.headersVariable })
   }
 
   obtenerEmpresaId(id:String, token): Observable<any>{
     let headersToken = this.headersVariable.set('Authorization', token);
-    return this._http.get(this.url + '/obtenerEmpresaId/' + id, {headers: headersToken})
+    return this._http.get(this.url + '/obtenerClienteId/' + id, {headers: headersToken})
   }
 
   updateUser(id, params, token){
