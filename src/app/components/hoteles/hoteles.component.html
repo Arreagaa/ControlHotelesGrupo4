@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+
+<body>
+
+
+  <!-- ======= hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(https://static.barcelo.com/content/dam/bhg/master/es/hoteles/guatemala/guatemala-city/barcelo-guatemala-city/main-photos/hotel/BGUA_VIEW_01.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+
+                <h2 class="animate__animated animate__fadeInDown">¡VISITA LOS MEJORES HOTELES A PRECIOS INCREÍBLES!</h2>
+                <p class="animate__animated animate__fadeInUp">ENCUENTRA TU PRÓXIMO ALOJAMIENTO ¡EMPIEZA YA!</p>
+
+
+                <a  class="btn-get-started scrollto animate__animated animate__fadeInUp"type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarSucursal"
+                *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'" ><i class="bi bi-file-earmark-plus"></i> Agregar Hotel</a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+  <main id="main">
+
+    <!-- ======= Clients Section ======= -->
+   <section id="clients" class="clients section-bg">
+    <div class="container">
+
+      <div class="row" data-aos="zoom-in">
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://hsancarlos.com/wp-content/uploads/2019/05/Logopng.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://www.caminorealantigua.com.gt/wp-content/uploads/2019/01/logo_CRAntigua_final.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://www.hotelcasaveranda.com/uploads/9/8/6/9/98696210/logo-scroll_3.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://static.wixstatic.com/media/b30165_fcbe561916e7482d8cfc1d8c07f47571~mv2.png/v1/fit/w_2500,h_1330,al_c/b30165_fcbe561916e7482d8cfc1d8c07f47571~mv2.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://hotelfontabella.com/wp-content/uploads/2022/04/LOGO-HOTEL-2.png" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="https://casapopenoe.ufm.edu/festivalaguacate2018/wp-content/uploads/2017/10/casablanca_logo.png" class="img-fluid" alt="">
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Cliens Section -->
+
+
+   <!-- ======= Services Section ======= -->
+   <section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>HOTELES ASOCIADOS</h2>
+        <p>Busca y Visita los mejores Hoteles, tendrá información concreta sobre los establecimientos, todos estos Hoteles son
+          asociados con el sitio, puede verlos, conocer los datos más relevantes, así mismo buscar a los Hoteles por su nombre o bien por su dirección. Esperamos que todo sea de su especial agrado.
+
+        </p>
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+  <section class="services section-bg">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12 col-md-4" *ngFor="let emp of empresaModelGet">
+        <div class="card text-center mb-3">
+          <div class="card mb-2" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="https://p4.wallpaperbetter.com/wallpaper/202/251/688/building-architecture-vertical-wallpaper-preview.jpg" class="img-fluid rounded-start" alt="">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" routerLinkActive="active">{{ emp.nombre }}</h5>
+                  <p class="card-text">Empresa de tipo {{emp.tipo}}, esta ubicada en el Municipio de {{emp.municipio}}, Guatemala.
+                  </p>
+                  <p class="card-text"><small class="text-muted">Contacto por {{ emp.email }}</small></p>
+                  <div class="space md-4">
+                    <a type="button" class="card-link" data-bs-toggle="modal" data-bs-target="#modalEditarEmpresa" (click)="getEmpresaId(emp._id)"><i class="bi bi-pencil-square"></i> Modificar</a>
+                    <a [routerLink]="['/Admin/Dashboard', emp._id]" class="card-link" routerLinkActive="active"> <i class="bi bi-shop"></i> Sucuarsales</a>
+                   <!-- <a [routerLink]="['/verEmpresa', emp._id]" class="card-link" routerLinkActive="active"> <i class="bi bi-shop"></i> Sucuarsales</a>-->
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="deleteEmpresa(emp._id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+ </div>
+</section>
+
+
+  </main>
+
+
+
+</body>
+
+</html>

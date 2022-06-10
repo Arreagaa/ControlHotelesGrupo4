@@ -20,6 +20,9 @@
         <a class="nav-link active" aria-current="page" routerLink="/DashboardInicio">Nosotros</a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/Hoteles">Hoteles</a>
+      </li>
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
         <a (click)="logOut()" class="nav-link active" aria-current="page" routerLink="/Login" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_EMPRESA' || 'ROL_ADMINISTRADOR'">Cerrar Sesión</a>
@@ -40,13 +43,6 @@
         </li></span>
       </button>
     </li>
-
-     <!-- <li class="nav-item">
-        <a class="nav-link active" aria-current="page" routerLink="/Login" >Inicio de Sesión</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" routerLink="/Registro">Registrarse</a>
-      </li>-->
 
     </ul>
   </div>

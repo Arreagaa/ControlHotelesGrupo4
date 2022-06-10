@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
           if(response.usuario.rol == 'ROL_EMPRESA'){
             this._router.navigate(['/Usuario/Dashboard'])
           }else{
-            this._router.navigate(['/Admin/Hotel'])
+            this._router.navigate(['/Admin/Hoteles'])
           }
         });
         Swal.fire({

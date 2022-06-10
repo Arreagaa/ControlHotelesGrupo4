@@ -10,6 +10,7 @@ import { HotelComponent } from './components/hotel/hotel.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
+import { HotelesComponent } from './components/hoteles/hoteles.component';
 
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'Registro', component: RegistroComponent},
   {path: 'DashboardInicio', component: DashboardInicioComponent},
   {path: 'Inicio', component: InicioComponent},
+  {path: 'Hoteles', component: HotelesComponent},
 
   {
     path: 'Usuario', canActivate: [UsuarioGuard], children:[
@@ -42,13 +44,16 @@ const routes: Routes = [
       {path:'Habitaciones', component: HabitacionesComponent},
       {path:'Servicios/:idSucursal',component: ServiciosComponent},
       {path: 'PerfilCliente', component: PerfilClienteComponent},
+
+      {path: 'Hoteles', component: HotelesComponent},
+      {path: 'Hotel', component: HotelComponent},
     ]
   },
   {
     path: 'Admin', canActivate: [AdministradorGuard], children:[
       {path: 'Inicio', component: InicioComponent},
 
-      {path: 'Hotel', component: HotelComponent},
+      {path: 'Hoteles', component: HotelesComponent},
 
       {path: 'Dashboard/:idEmpresa', component: DashboardComponent},
 

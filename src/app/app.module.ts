@@ -17,11 +17,13 @@ import { DashboardInicioComponent } from './components/dashboard-inicio/dashboar
 import { HotelComponent } from './components/hotel/hotel.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
+import { HotelesComponent } from './components/hoteles/hoteles.component';
 
 import { ChartsModule } from '@rinminase/ng-charts';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
+
 
 
 
@@ -42,6 +44,7 @@ import { PerfilClienteComponent } from './components/perfil-cliente/perfil-clien
     HabitacionesComponent,
     PerfilClienteComponent,
     ServiciosComponent,
+    HotelesComponent,
   ],
   imports: [
     BrowserModule,
