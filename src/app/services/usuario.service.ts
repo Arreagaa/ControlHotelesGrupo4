@@ -62,11 +62,11 @@ export class UsuarioService {
     let headersToken = this.headersVariable.set('Authorization', token)
 
     return this._http.get(this.url + '/obtenerClientes', { headers: headersToken })
-    //return this._http.get(this.url + '/obtenerEmpresas', { headers: this.headersVariable })
   }
 
-  obtenerEmpresaId(id:String, token): Observable<any>{
+  obtenerClienteId(id:String, token): Observable<any>{
     let headersToken = this.headersVariable.set('Authorization', token);
+    
     return this._http.get(this.url + '/obtenerClienteId/' + id, {headers: headersToken})
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
-//EMPRESA
+//HOTELES
 import { Hotel } from 'src/app/models/hotel.model';
 import { HotelesService } from 'src/app/services/hoteles.service';
 
@@ -15,15 +15,16 @@ import Swal from 'sweetalert2'
 export class HotelesComponent implements OnInit {
 
   public token;
+  public buscar;
 
-  //Empresa
+  //HOTELES
   public hotelModelGet: Hotel;
-  //public empresaModelPost: Empresa;
-  //public empresaModelId: Empresa;
+  public hotelModelPost: Hotel;
+  public hotelModelGetId: Hotel;
 
   constructor(private _hotelesService: HotelesService, public _usuarioService: UsuarioService) {
-    //this.empresaModelPost = new Empresa('','', '','', '', '','');
-    //this.empresaModelId = new Empresa('','','','','','','');
+    this.hotelModelPost = new Hotel('','', '','', '', '','','');
+    this.hotelModelGetId = new Hotel('','', '','', '', '','','');
     this.token = this._usuarioService.obtenerToken();
   }
 
@@ -44,12 +45,12 @@ export class HotelesComponent implements OnInit {
     )
   }
 
- /* getEmpresaId(idEmpresa){
-    this._hotelService.obtenerEmpresaId(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
+  getHotelId(idHotel){
+    this._hotelesService.obtenerHotelId(idHotel, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
-        this.empresaModelId = response.usuarios;
+        this.hotelModelGetId = response.hoteles;
         console.log(response);
-        console.log(this.empresaModelId);
+        console.log(this.hotelModelGetId);
       },
       (error)=>{
         console.log(<any>error)
@@ -57,17 +58,17 @@ export class HotelesComponent implements OnInit {
     )
   }
 
-  postEmpresas(addForm){
-    this._hotelService.agregarEmpresa(this.empresaModelPost, this._usuarioService.obtenerToken()).subscribe(
+  postHoteles(addForm){
+    this._hotelesService.agregarHotel(this.hotelModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getEmpresas();
+        this.getHoteles();
         addForm.reset();
         Swal.fire({
           icon: 'success',
-          title: 'Se ha agregado la Empresa Correctamente',
+          title: 'Se ha agregado el Hotel Correctamente',
           text: '¡Puedes Revisar el cambio!',
-          footer: '<a>Puedes revisar la nueva Empresa.</a>'
+          footer: '<a>Puedes verificar el nuevo Hotel.</a>'
         })
       },
       (error)=>{
@@ -82,28 +83,15 @@ export class HotelesComponent implements OnInit {
     )
   }
 
-  deleteEmpresa(idEmpresa) {
-    this._hotelService.eliminarEmpresa(idEmpresa, this._usuarioService.obtenerToken()).subscribe(
+  putHoteles(){
+    this._hotelesService.editarHotel(this.hotelModelGetId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getEmpresas();
-      },
-      (error)=>{
-        console.log(<any>error);
-
-      }
-    )
-  }
-
-  putEmpresa(){
-    this._hotelService.editarEmpresa(this.empresaModelId, this._usuarioService.obtenerToken()).subscribe(
-      (response)=>{
-        console.log(response);
-        this.getEmpresas();
+        this.getHoteles();
         Swal.fire({
           icon: 'warning',
-          title: 'Se han realizado cambios en la Empresa',
-          text: '¡Puedes Revisar la Empresa Actualizada!',
+          title: 'Se han realizado cambios en el Hotel',
+          text: '¡Puedes Revisar el Hotel Actualizado!',
           footer: '<a>Función concretada correctamente.</a>'
         })
       },
@@ -117,7 +105,20 @@ export class HotelesComponent implements OnInit {
         })
       }
     )
-  }*/
+  }
+
+  deleteHotel(idHotel) {
+    this._hotelesService.eliminarHotel(idHotel, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getHoteles();
+      },
+      (error)=>{
+        console.log(<any>error);
+
+      }
+    )
+  }
 }
 
 

@@ -38,7 +38,7 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   getClienteId(id){
-    this._usuarioService.obtenerEmpresaId(id, this._usuarioService.obtenerToken()).subscribe(
+    this._usuarioService.obtenerClienteId(id, this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.usuarioModelId = response.usuarios;
         console.log(response);
@@ -79,9 +79,9 @@ export class PerfilClienteComponent implements OnInit {
 
         Swal.fire({
           icon: 'success',
-          title: 'Has Eliminado tú Perfil',
-          text: '¡Cambios Realizados!',
-          footer: '<a>Esperamos que todo sea de tu agrado.</a>'
+          title: 'Perfil Eliminado Correctamente',
+          text: '¡Lamentamos que te retires!',
+          footer: '<a>Esperamos que todo haya sido de tu agrado.</a>'
         })
         //this.getClienteId(this.id)
         this.identidad = this._usuarioService.obtenerIdentidad();

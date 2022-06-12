@@ -19,29 +19,29 @@ export class HotelesService {
     return this._http.get(this.url + '/obtenerHoteles', { headers: this.headersVariable })
   }
 
- /* agregarEmpresa(modeloEmpresa: Empresa, token): Observable<any> {
-    let parametros = JSON.stringify(modeloEmpresa);
+  agregarHotel(modeloHotel: Hotel, token): Observable<any> {
+    let parametros = JSON.stringify(modeloHotel);
     let headersToken = this.headersVariable.set('Authorization', token);
 
-    return this._http.post(this.url + '/registrarEmpresa', parametros, {headers: headersToken})
+    return this._http.post(this.url + '/registrarHotel', parametros, {headers: headersToken})
   }
 
-  eliminarEmpresa(id : String, token): Observable<any> {
+  obtenerHotelId(id:String, token): Observable<any>{
     let headersToken = this.headersVariable.set('Authorization', token);
-
-    return this._http.delete(this.url + '/eliminarEmpresa/' + id, { headers: headersToken })
+    return this._http.get(this.url + '/obtenerHotelId/' + id, {headers: headersToken})
   }
 
-  obtenerEmpresaId(id:String, token): Observable<any>{
+  editarHotel(modeloHotel: Hotel, token): Observable<any> {
+    let parametros = JSON.stringify(modeloHotel);
     let headersToken = this.headersVariable.set('Authorization', token);
-    return this._http.get(this.url + '/obtenerEmpresaId/' + id, {headers: headersToken})
+
+    return this._http.put(this.url + '/editarHotel/' + modeloHotel._id, parametros, { headers: headersToken })
   }
 
-  editarEmpresa(modeloEmpresa: Empresa, token): Observable<any> {
-    let parametros = JSON.stringify(modeloEmpresa);
+  eliminarHotel(id : String, token): Observable<any> {
     let headersToken = this.headersVariable.set('Authorization', token);
 
-    return this._http.put(this.url + '/editarEmpresa/' + modeloEmpresa._id, parametros, { headers: headersToken })
-  }*/
+    return this._http.delete(this.url + '/eliminarHotel/' + id, { headers: headersToken })
+  }
 
 }

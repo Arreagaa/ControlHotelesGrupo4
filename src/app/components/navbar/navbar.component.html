@@ -30,14 +30,14 @@
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
       <button class="profile-btn" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
-        <img src="https://assets.easybroker.com/property_images/1898799/28976279/EB-GG8799.png?version=1607183541" />
+        <img src="https://live.staticflickr.com/2099/2512672571_fa09ad50f8_h.jpg"/>
         <span><li class="nav-item">
           <a class="nav-link" routerLink="/Usuario/PerfilCliente" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>
         </li></span>
       </button>
 
       <button class="profile-btn disable" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">
-        <img src="https://www.aycelaborytax.com/wp-content/uploads/2019/02/tipos-administrador.jpg" />
+        <img src="https://live.staticflickr.com/4511/26177977799_401027e157_c.jpg" />
         <span><li class="nav-item disable">
           <a class="nav-link disable" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>
         </li></span>
