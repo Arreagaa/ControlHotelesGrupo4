@@ -18,10 +18,9 @@
     <div class="form-container sign-in-container">
       <form action="#">
         <h1>Iniciar Sesión</h1>
+        <p class="texto" style="text-align: center">Comienza con nosotros, ¡Empieza Ya!</p>
 
-        <br>
-
-          <label class="br">Ingresa tu Usuario o Correo</label>
+          <label class="br">Ingresa tu Correo Registrado</label>
           <input type="text" class="form-control" placeholder="@gmail.com" name="email" #email="ngModel"
           [(ngModel)]="usuarioModel.email" required>
             <div [hidden]="email.valid || email.pristine"
@@ -29,14 +28,14 @@
 
        </div>
         <br>
-        <label>Clave de Acceso</label>
+        <label class="br3">Clave de Acceso</label>
               <input type="password" class="form-control" placeholder="Password" name="password" #password="ngModel"
               [(ngModel)]="usuarioModel.password" required>
               <div [hidden]="password.valid || password.pristine"
                   class="alert alert-danger">No quites tu Clave de Acceso, la necesitas.
                 </div>
 <div class="text1">
-        <button  type="button" class="br" (click)="login()">Iniciar Sesión</button>
+        <button type="button" class="br1" (click)="login()">Iniciar Sesión</button>
 </div>
         <br>
         <div class="div2">
@@ -49,9 +48,9 @@
       <div class="overlay">
 
         <div class="overlay-panel overlay-right">
-          <h1>Bienvenido!</h1>
-          <p>Ingresa tus credenciales para poder continuar</p>
-          <button type="button" class="ghost" routerLink="/Registro">Crear Cuenta</button>
+          <h1>¡Bienvenido!</h1>
+          <p>Ingresa tus credenciales correctamente para poder continuar</p>
+          <button type="button" class="ghost" routerLink="/Registro">Crear una Cuenta</button>
 
         </div>
       </div>

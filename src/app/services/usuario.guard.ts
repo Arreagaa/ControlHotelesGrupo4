@@ -15,7 +15,7 @@ export class UsuarioGuard implements CanActivate {
   canActivate() {
     let identidad2 = this.obtenerIdentidad();
 
-    if (identidad2.rol !== 'ROL_EMPRESA') {
+    if (identidad2.rol !== 'ROL_CLIENTE') {
       this._router.navigate(['/Login'])
       return false;
     }

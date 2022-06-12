@@ -11,7 +11,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Open Sans", sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
@@ -26,7 +26,7 @@ h2 {
 }
 
 p {
-	font-size: 14px;
+	font-size: 16.5px;
 	font-weight: 100;
 	line-height: 20px;
 	letter-spacing: 0.5px;
@@ -50,10 +50,10 @@ button {
 	background-color: #283a5ae6;
 	color: #FFFFFF;
 	font-size: 12px;
-	font-weight: bold;
+	//font-weight: bold;
 	padding: 12px 45px;
 	letter-spacing: 1px;
-	text-transform: uppercase;
+	//text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
 
@@ -66,8 +66,17 @@ button:focus {
 }
 
 button.ghost {
-
+  font-size: 16px;
 	border-color: #FFFFFF;
+}
+
+.form-control{
+  width: 85%;
+  border-radius: 5px;
+}
+
+.alert{
+  width: 85%;
 }
 
 form {
@@ -231,17 +240,36 @@ input {
 margin-top: 50px;
 }
 .br{
-  margin-top: 80px;
-  }
-.text1{
+  font-size: 18px;
+  margin-top: 45px;
 
-  float:left;
 }
+.br3{
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.text1{
+float:left;
+}
+
 .div2{
   float:left;
 display:flex;
 flex-direction: row;
 }
-.text2{ display : flex;
-  flex-direction : row;}
+.text2{
+  display : flex;
+  flex-direction : row;
+  font-size: 16px;
+}
 
+  .texto{
+    font-size: 18px;
+    color: #283a5ae6;
+  }
+
+  .br1{
+    font-size: 16px;
+    margin-top: 60px;
+    }

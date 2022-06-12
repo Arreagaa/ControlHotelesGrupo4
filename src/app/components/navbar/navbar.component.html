@@ -21,15 +21,15 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" routerLink="/Hoteles">Hoteles</a>
+        <a class="nav-link active" aria-current="page" routerLink="/DashboardHoteles">Hoteles</a>
       </li>
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
-        <a (click)="logOut()" class="nav-link active" aria-current="page" routerLink="/Login" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_EMPRESA' || 'ROL_ADMINISTRADOR'">Cerrar Sesión</a>
+        <a (click)="logOut()" class="nav-link active" aria-current="page" routerLink="/Login" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' || 'ROL_ADMINISTRADOR'">Cerrar Sesión</a>
       </li>
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
-      <button class="profile-btn" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_EMPRESA'">
+      <button class="profile-btn" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
         <img src="https://assets.easybroker.com/property_images/1898799/28976279/EB-GG8799.png?version=1607183541" />
         <span><li class="nav-item">
           <a class="nav-link" routerLink="/Usuario/PerfilCliente" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>

@@ -1,7 +1,7 @@
 export class Hotel {
   constructor(
     public _id: String,
-    public nombre: String,
+    public nombreHotel: String,
     public email: String,
     public direccion: String,
     public telefono: String,
