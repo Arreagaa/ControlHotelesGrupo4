@@ -23,8 +23,8 @@ export class HotelesComponent implements OnInit {
   public hotelModelGetId: Hotel;
 
   constructor(private _hotelesService: HotelesService, public _usuarioService: UsuarioService) {
-    this.hotelModelPost = new Hotel('','', '','', '', '','','');
-    this.hotelModelGetId = new Hotel('','', '','', '', '','','');
+    this.hotelModelPost = new Hotel('','', '','', '', '',0,'');
+    this.hotelModelGetId = new Hotel('','', '','', '', '',0,'');
     this.token = this._usuarioService.obtenerToken();
   }
 

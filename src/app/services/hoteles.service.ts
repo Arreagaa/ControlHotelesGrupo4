@@ -19,8 +19,8 @@ export class HotelesService {
     return this._http.get(this.url + '/obtenerHoteles', { headers: this.headersVariable })
   }
 
-  agregarHotel(modeloHotel: Hotel, token): Observable<any> {
-    let parametros = JSON.stringify(modeloHotel);
+  agregarHotel(hotelModel: Hotel, token): Observable<any> {
+    let parametros = JSON.stringify(hotelModel);
     let headersToken = this.headersVariable.set('Authorization', token);
 
     return this._http.post(this.url + '/registrarHotel', parametros, {headers: headersToken})
@@ -31,11 +31,11 @@ export class HotelesService {
     return this._http.get(this.url + '/obtenerHotelId/' + id, {headers: headersToken})
   }
 
-  editarHotel(modeloHotel: Hotel, token): Observable<any> {
-    let parametros = JSON.stringify(modeloHotel);
+  editarHotel(hotelModel: Hotel, token): Observable<any> {
+    let parametros = JSON.stringify(hotelModel);
     let headersToken = this.headersVariable.set('Authorization', token);
 
-    return this._http.put(this.url + '/editarHotel/' + modeloHotel._id, parametros, { headers: headersToken })
+    return this._http.put(this.url + '/editarHotel/' + hotelModel._id, parametros, { headers: headersToken })
   }
 
   eliminarHotel(id : String, token): Observable<any> {
