@@ -63,7 +63,7 @@ export class AdministracionUsuariosComponent implements OnInit {
         this.getUsuarios();
         Swal.fire({
           icon: 'warning',
-          title: 'Se han realizado cambios en el Usuarios',
+          title: 'Se han realizado cambios en el Usuario',
           text: '¡Puedes Revisar el Usuario Actualizado!',
           footer: '<a>Función concretada correctamente.</a>'
         })

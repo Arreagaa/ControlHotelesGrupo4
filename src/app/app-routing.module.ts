@@ -12,6 +12,7 @@ import { AdministracionUsuariosComponent } from './components/administracion-usu
 
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
+import { AdministradorHotelGuard } from './services/administracionHoteles.guard';
 
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
@@ -36,6 +37,11 @@ const routes: Routes = [
       {path: 'Hoteles', component: HotelesComponent},
 
       {path: 'AdministracionUsuarios', component: AdministracionUsuariosComponent},
+    ]
+  },
+  {
+    path: 'Hotel', canActivate: [AdministradorHotelGuard], children:[
+
     ]
   },
   { path: "**", component: LoginComponent }

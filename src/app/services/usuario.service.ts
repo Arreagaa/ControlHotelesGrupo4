@@ -86,7 +86,7 @@ export class UsuarioService {
     let parametros = JSON.stringify(modeloUsuario);
     let headersToken = this.headersVariable.set('Authorization', token);
 
-    return this._http.put(this.url + '/editarClientePerfil/' + modeloUsuario._id, parametros, { headers: headersToken })
+    return this._http.put(this.url + '/editarClienteRol/' + modeloUsuario._id, parametros, { headers: headersToken })
   }
 
 }
