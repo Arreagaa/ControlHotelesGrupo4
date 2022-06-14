@@ -8,11 +8,10 @@ import { DashboardInicioComponent } from './components/dashboard-inicio/dashboar
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 import { HotelesComponent } from './components/hoteles/hoteles.component';
 import { DashboardHotelesComponent } from './components/dashboard-hoteles/dashboard-hoteles.component';
+import { AdministracionUsuariosComponent } from './components/administracion-usuarios/administracion-usuarios.component';
 
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
-
-
 
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
@@ -36,6 +35,7 @@ const routes: Routes = [
 
       {path: 'Hoteles', component: HotelesComponent},
 
+      {path: 'AdministracionUsuarios', component: AdministracionUsuariosComponent},
     ]
   },
   { path: "**", component: LoginComponent }

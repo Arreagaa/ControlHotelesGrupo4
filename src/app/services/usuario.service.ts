@@ -66,7 +66,7 @@ export class UsuarioService {
 
   obtenerClienteId(id:String, token): Observable<any>{
     let headersToken = this.headersVariable.set('Authorization', token);
-    
+
     return this._http.get(this.url + '/obtenerClienteId/' + id, {headers: headersToken})
   }
 
@@ -79,6 +79,14 @@ export class UsuarioService {
     let headersToken = this.headersVariable.set('Authorization', token);
 
     return this._http.delete(this.url + '/eliminarClientePerfil/' + id, { headers: headersToken })
+  }
+
+  /*ADMINISTRACION USUARIOS*/
+  editarClientes(modeloUsuario: Usuario, token): Observable<any> {
+    let parametros = JSON.stringify(modeloUsuario);
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.put(this.url + '/editarClientePerfil/' + modeloUsuario._id, parametros, { headers: headersToken })
   }
 
 }
