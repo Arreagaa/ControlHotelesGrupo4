@@ -99,47 +99,45 @@
 
   <section class="services section-bg">
   <div class="container">
-
-
-    <div class="row">
-      <div class="card mb-3 text-center" style="max-width: 540px;" *ngFor="let hotel of hotelModelGet | buscar:buscar" >
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="https://www.xtrafondos.com/wallpapers/vertical/edificios-en-ciudad-9082.jpg" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
+  <div class="row">
+    <div class="card mb-3 text-center" style="max-height: 300px" *ngFor="let hotel of hotelModelGet | buscar:buscar" >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img ngClass="imagen-card" src="https://live.staticflickr.com/65535/51915945930_9c9f3a68c9_6k.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="section-title1">
               <h4 class="card-title" style="text-align: center;" >{{ hotel.nombreHotel }}</h4>
-              <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
-
-              <br>
-              <p class="card-text" style="text-align: center;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio
-              siempre al tanto de los Clientes, precios desde {{ hotel.precioHabitacion }} USD.</p>
-
-              <p class="card-text" style="text-align:center;">¡Llama ya al {{ hotel.telefono }}!</p>
-
-              <form>
-                <p class="clasificacion">
-                  <input id="radio1" type="radio" name="estrellas" value="5">
-                  <label for="radio1">★</label>
-                  <input id="radio2" type="radio" name="estrellas" value="4">
-                  <label for="radio2">★</label>
-                  <input id="radio3" type="radio" name="estrellas" value="3">
-                  <label for="radio3">★</label>
-                  <input id="radio4" type="radio" name="estrellas" value="2">
-                  <label for="radio4">★</label>
-                  <input id="radio5" type="radio" name="estrellas" value="1">
-                  <label for="radio5">★</label>
-                </p>
-              </form>
-
             </div>
+            <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
+
+            <p class="card-text" style="justify-self: start;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio,
+              siempre al tanto de sus clientes, precios desde {{ hotel.precioHabitacion }} USD.</p>
+
+            <p class="card-text" style="text-align:center;">¡Llama ya al {{ hotel.telefono }}!</p>
+
+            <form>
+              <p class="clasificacion">
+                <input id="radio1" type="radio" name="estrellas" value="5">
+                <label for="radio1">★</label>
+                <input id="radio2" type="radio" name="estrellas" value="4">
+                <label for="radio2">★</label>
+                <input id="radio3" type="radio" name="estrellas" value="3">
+                <label for="radio3">★</label>
+                <input id="radio4" type="radio" name="estrellas" value="2">
+                <label for="radio4">★</label>
+                <input id="radio5" type="radio" name="estrellas" value="1">
+                <label for="radio5">★</label>
+              </p>
+            </form>
+
           </div>
         </div>
       </div>
     </div>
-
- </div>
+  </div>
+</div>
 </section>
 
 <section id="services" class="services section-bg">

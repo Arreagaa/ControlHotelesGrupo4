@@ -80,7 +80,10 @@
         <h2>HOTELES ASOCIADOS</h2>
         <p *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'" class="textoHoteles">Busca y Visita los mejores Hoteles, tendrá información concreta sobre los establecimientos, todos estos Hoteles son
           asociados con el sitio, puede verlos, conocer los datos más relevantes, así mismo buscar a los Hoteles por su nombre o bien por su dirección. Como Administrador de la Aplicación controla y maneja
-          a los establecimientos, puedes agregar un nuevo Hotel que se vaya asociando, editarlo o incluso eliminarlo, en caso que se descarte la asociación.
+          a los establecimientos, puedes agregar un nuevo Hotel que se vaya asociando, editarlo o incluso eliminarlo, en caso que se descarte la asociación. <br><br>
+          Se hace evidente desde el nombre del Hotel, su Correo de Contacto, su respectiva información destacando, la Dirección y el País donde se encuentra, su Precio de base de Habitación,
+          su Teléfono de Contacto, y por último, la Identificación del Administrador, al momento de agregar un Hotel, la Identificación será del Administrador de la Aplicación, en caso que el
+           Administrador del Hotel, ya este registrado, edita y coloca su Identificación personal.
         </p>
 
         <p *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'" class="textoHoteles">Busca y Visita los mejores Hoteles, tendrá información concreta sobre los establecimientos,
@@ -91,6 +94,7 @@
 
       </div>
     </div>
+
   </section><!-- End Services Section -->
 
   <section class="services section-bg">
@@ -106,43 +110,82 @@
   <div class="container">
 
 
-    <div class="row">
-      <div class="card mb-3 text-center" style="max-width: 540px;" *ngFor="let hotel of hotelModelGet | buscar:buscar" >
+    <div class="row" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">
+      <div class="card mb-3 text-center" style="max-height: 300px" *ngFor="let hotel of hotelModelGet | buscar:buscar" >
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="https://www.xtrafondos.com/wallpapers/vertical/edificios-en-ciudad-9082.jpg" class="img-fluid rounded-start" alt="...">
+            <img ngClass="imagen-card" src="https://live.staticflickr.com/4077/4879184761_b2883caf09_k.jpg" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h4 class="card-title" style="text-align: center;" >{{ hotel.nombreHotel }}</h4>
+              <div class="section-title1">
+                <h4 class="card-title" style="text-align: center;" >{{ hotel.nombreHotel }}</h4>
+              </div>
               <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
 
-              <br>
-              <p class="card-text" style="text-align: center;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio
-              siempre al tanto de los Clientes, precios desde {{ hotel.precioHabitacion }} USD.</p>
+              <p class="card-text" style="justify-self: start;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio,
+                 precios desde {{ hotel.precioHabitacion }} USD. ¡Llama ya al {{ hotel.telefono }}!</p>
 
-              <p class="card-text" style="text-align:center;">¡Llama ya al {{ hotel.telefono }}!</p>
+              <p class="card-text" style="text-align:center;"><i class="bi bi-person-check-fill"></i> {{hotel.idAdmin}}. </p>
 
-              <form>
-                <p class="clasificacion">
-                  <input id="radio1" type="radio" name="estrellas" value="5">
-                  <label for="radio1">★</label>
-                  <input id="radio2" type="radio" name="estrellas" value="4">
-                  <label for="radio2">★</label>
-                  <input id="radio3" type="radio" name="estrellas" value="3">
-                  <label for="radio3">★</label>
-                  <input id="radio4" type="radio" name="estrellas" value="2">
-                  <label for="radio4">★</label>
-                  <input id="radio5" type="radio" name="estrellas" value="1">
-                  <label for="radio5">★</label>
-                </p>
-              </form>
+              <span data-tooltip="Modificar al Hotel">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarHotel" (click)="getHotelId(hotel._id)">
+                  <i class="bi bi-pencil-square"></i></button>
+              </span>
+
+              <span data-tooltip="Eliminar al Hotel">
+                <button class="btn btn-primary" (click)="deleteHotel(hotel._id)">
+                  <i class="bi bi-file-earmark-minus"></i></button>
+              </span>
 
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+      <div class="row" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
+        <div class="card mb-3 text-center" style="max-height: 300px" *ngFor="let hotel of hotelModelGet | buscar:buscar" >
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img ngClass="imagen-card" src="https://live.staticflickr.com/4077/4879184761_b2883caf09_k.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="section-title1">
+                  <h4 class="card-title" style="text-align: center;" [routerLink]="['/Usuario/Login', hotel._id]" >{{ hotel.nombreHotel }}</h4>
+                </div>
+                <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
+
+                <p class="card-text" style="justify-self: start;">Dicho establecimiento se encuentra en {{ hotel.direccion }}, {{ hotel.pais }}. Poseen un excelente servicio,
+                  siempre al tanto de sus clientes, precios desde {{ hotel.precioHabitacion }} USD.</p>
+
+                <p class="card-text" style="text-align:center;">¡Llama ya al {{ hotel.telefono }}!</p>
+
+                <!--<form>
+                  <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5">
+                    <label for="radio1">★</label>
+                    <input id="radio2" type="radio" name="estrellas" value="4">
+                    <label for="radio2">★</label>
+                    <input id="radio3" type="radio" name="estrellas" value="3">
+                    <label for="radio3">★</label>
+                    <input id="radio4" type="radio" name="estrellas" value="2">
+                    <label for="radio4">★</label>
+                    <input id="radio5" type="radio" name="estrellas" value="1">
+                    <label for="radio5">★</label>
+                  </p>
+                </form>-->
+
+                  <button class="btn btn-primary" [routerLink]="['/Usuario/Login', hotel._id]">
+                    <i class="bi bi-clipboard-check"></i> Iniciar Reservación</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
  </div>
 </section>
@@ -360,16 +403,6 @@
                 class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
               </div>
           </div>
-
-          <!--<div class="mb-3">
-            <label for="inputIdAdmin" class="form-label">Identifación del Administrador</label>
-            <input placeholder="Identifación del Administrador" type="text" class="form-control" name="idAdmin" #idAdmin="ngModel" required
-            [(ngModel)]="hotelModelPost.idAdmin">
-              <div [hidden]="idAdmin.valid || idAdmin.pristine"
-                class="alert alert-danger">Se requiere colocar los Datos del Administrador para continuar.
-              </div>
-          </div>-->
-
         </form>
       </div>
       <div class="modal-footer">
@@ -379,6 +412,91 @@
     </div>
   </div>
 </div>
+
+<!--Modal Editar Hotel-->
+<div class="modal fade" id="modalEditarHotel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Editar Datos del Hotel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+            <label for="inputNombreHotel" class="form-label">Editar Nombre de la Hotel</label>
+            <input placeholder="Barceló Guatemala City" type="text" class="form-control" name="nombreHotel" #nombreHotel="ngModel" required
+            [(ngModel)]="hotelModelGetId.nombreHotel">
+              <div [hidden]="nombreHotel.valid || nombreHotel.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Correo de Contacto</label>
+            <input placeholder="@gmail.com" type="email" class="form-control" name="email" #email="ngModel" required
+            [(ngModel)]="hotelModelGetId.email">
+              <div [hidden]="email.valid || email.pristine"
+                class="alert alert-danger">Se requiere colocar el Correo para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDireccion" class="form-label">Dirección del Hotel</label>
+            <input placeholder="Ubicacion Concreta" type="text" class="form-control" name="direccion" #direccion="ngModel" required
+            [(ngModel)]="hotelModelGetId.direccion">
+              <div [hidden]="direccion.valid || direccion.pristine"
+                class="alert alert-danger">Se requiere colocar la Dirección para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputTelefono" class="form-label">Teléfono de Contacto</label>
+            <input placeholder="Número de Contacto" type="tel" class="form-control" name="telefono" #telefono="ngModel" required
+            [(ngModel)]="hotelModelGetId.telefono">
+              <div [hidden]="telefono.valid || telefono.pristine"
+                class="alert alert-danger">Se requiere colocar la Teléfono para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPais" class="form-label">País</label>
+            <input placeholder="Guatemala" type="text" class="form-control" name="pais" #pais="ngModel" required
+            [(ngModel)]="hotelModelGetId.pais">
+              <div [hidden]="pais.valid || pais.pristine"
+                class="alert alert-danger">Se requiere colocar la País para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecioHabitacion" class="form-label">Precio Base de las Habitaciones</label>
+            <input placeholder="USD" type="number" class="form-control" name="precioHabitacion" #precioHabitacion="ngModel" required
+            [(ngModel)]="hotelModelGetId.precioHabitacion">
+              <div [hidden]="precioHabitacion.valid || precioHabitacion.pristine"
+                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputIdAdmin" class="form-label">Identificación del Administrador</label>
+            <input placeholder="Identificación" type="text" class="form-control" name="idAdmin" #idAdmin="ngModel" required
+            [(ngModel)]="hotelModelGetId.idAdmin">
+              <div [hidden]="idAdmin.valid || idAdmin.pristine"
+                class="alert alert-danger">Se requieren los datos del Administrador para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="putHoteles()" data-bs-dismiss="modal">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <app-footer></app-footer>
 </main>
