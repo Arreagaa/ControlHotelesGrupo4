@@ -483,6 +483,7 @@ input[type="radio"]:checked ~ label {
   color: #444;
   display: block;
   padding: 5px 0;
+  font-size: 15px;
 }
 
 .single-well ul li i {
@@ -492,6 +493,8 @@ input[type="radio"]:checked ~ label {
 }
 
 .single-well p {
+  font-size: 15px;
+  text-align: justify;
   color: #444;
 }
 

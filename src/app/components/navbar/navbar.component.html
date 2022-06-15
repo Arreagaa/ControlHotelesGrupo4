@@ -25,7 +25,8 @@
       </li>
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
-        <a (click)="logOut()" class="nav-link active" aria-current="page" routerLink="/Login" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' || 'ROL_ADMINISTRADOR'">Cerrar Sesión</a>
+        <a (click)="logOut()" class="nav-link active" aria-current="page" routerLink="/Login" *ngIf=" _usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' || 'ROL_ADMINISTRADOR'
+        || 'ROL_HOTEL'">Cerrar Sesión</a>
       </li>
 
       <li class="nav-item" *ngIf="_usuarioService.obtenerToken()">
@@ -38,6 +39,13 @@
 
       <button class="profile-btn disable" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">
         <img src="https://live.staticflickr.com/4511/26177977799_401027e157_c.jpg" />
+        <span><li class="nav-item disable">
+          <a class="nav-link disable" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>
+        </li></span>
+      </button>
+
+      <button class="profile-btn disable" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'">
+        <img src="https://live.staticflickr.com/1178/862126715_3c06af772f_h.jpg" />
         <span><li class="nav-item disable">
           <a class="nav-link disable" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>
         </li></span>

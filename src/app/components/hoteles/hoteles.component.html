@@ -154,7 +154,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <div class="section-title1">
-                  <h4 class="card-title" style="text-align: center;" [routerLink]="['/Usuario/Login', hotel._id]" >{{ hotel.nombreHotel }}</h4>
+                  <h4 class="card-title" style="text-align: center;" [routerLink]="['/Usuario/Habitaciones', hotel._id]" >{{ hotel.nombreHotel }}</h4>
                 </div>
                 <h6 class="card-title" style="text-align: center;" >{{ hotel.email }}</h6>
 
@@ -178,11 +178,11 @@
                   </p>
                 </form>-->
 
-                  <!--<button class="btn btn-primary" [routerLink]="['/Usuario/Habitaciones', hotel._id]">
-                    <i class="bi bi-clipboard-check"></i> Iniciar Reservación</button>-->
+                  <button class="btn btn-primary" [routerLink]="['/Usuario/Habitaciones', hotel._id]">
+                    <i class="bi bi-clipboard-check"></i> Iniciar Reservación</button>
 
-                    <button class="btn btn-primary" routerLink="/Usuario/Habitaciones">
-                      <i class="bi bi-clipboard-check"></i> Iniciar Reservación</button>
+                    <!--<button class="btn btn-primary" routerLink="/Usuario/Habitaciones">
+                      <i class="bi bi-clipboard-check"></i> Iniciar Reservación</button>-->
 
               </div>
             </div>

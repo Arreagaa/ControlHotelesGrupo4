@@ -74,6 +74,10 @@ export class LoginComponent implements OnInit {
           }else{
             this._router.navigate(['/Admin/Hoteles'])
           }
+
+          if(response.usuario.rol == 'ROL_HOTEL'){
+            this._router.navigate(['/Hotel/Habitaciones/:idHotel'])
+          }
         });
         Swal.fire({
           icon: 'success',

@@ -30,8 +30,8 @@ const routes: Routes = [
 
       {path: 'Hoteles', component: HotelesComponent},
 
-      //{path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
-      {path: 'Habitaciones', component: HabitacionesComponent},
+      {path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
+      //{path: 'Habitaciones', component: HabitacionesComponent},
     ]
   },
   {
@@ -45,6 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'Hotel', canActivate: [AdministradorHotelGuard], children:[
+      {path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
 
     ]
   },
