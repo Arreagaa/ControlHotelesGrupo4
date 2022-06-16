@@ -17,11 +17,11 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(https://oceana.com.gt/wp-content/uploads/2018/10/771A5729.jpg)">
+          <div class="carousel-item active" style="background-image: url(https://live.staticflickr.com/300/19450250399_0ae50320a2_5k.jpg)">
             <div class="carousel-container">
               <div class="container">
 
-                <h2 class="animate__animated animate__fadeInDown">¡NUESTRO GRAN HOTEL!</h2>
+                <h2 class="animate__animated animate__fadeInDown">¡SERVICIOS DEL HOTEL!</h2>
                 <p class="animate__animated animate__fadeInUp">TODO SOBRE NUESTRO AMADO HOTEL</p>
 
                 <a class="btn-get-started scrollto animate__animated animate__fadeInUp" type="button" routerLink="/Usuario/Hoteles">REGRESAR</a>
@@ -145,7 +145,7 @@
       </div>
       <div class="col-lg-3 cta-btn-container text-center">
         <!--<a class="cta-btn align-middle" [routerLink]="['/Usuario/ServiciosHotel', hotelModelGet._id]">Ver Servicios</a>-->
-        <a class="cta-btn align-middle" routerLink="/Usuario/ServiciosHotel">Ver Servicios</a>
+        <a class="cta-btn align-middle" [routerLink]="['/Usuario/ServiciosHotel', hotelModelGet._id]">Ver Servicios</a>
       </div>
     </div>
 
@@ -154,100 +154,115 @@
 
 <section id="services" class="services section-bg">
 
-  <!-- ======= Blog Section ======= -->
-  <div id="blog" class="blog-area">
-    <div class="blog-inner area-padding">
-      <div class="blog-overly"></div>
-      <div class="container ">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="section-title">
-              <h2>ORGANIZA TU EVENTO</h2>
-            </div>
+  <div id="portfolio" class="portfolio-area area-padding fix">
+    <div class="container">
+      <div class="row">
+    <div class="section-title">
+      <h2>GALERÍA DE FOTOGRAFÍAS</h2>
+    </div>
+  </div>
+
+  <div class="row awesome-project-content portfolio-container">
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app portfolio-item">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/c5/6e/ee/barcelo-guatemala-city.jpg?w=900&h=-1&s=1" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery">
+              <h4>Instalaciones Diveridas</h4>
+              <span>Vive el Momento</span>
+            </a>
           </div>
-        </div>
-        <div class="row">
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a>
-                  <img src="https://image-tc.galaxy.tf/wijpeg-a5bn48mkmwpmp3ai7ybpukge1/file.jpg?width=1920" alt="">
-                </a>
-              </div>
-              <br>
-              <div class="blog-text">
-                <h4>
-                  <a>Boda de Ensueño</a>
-                </h4>
-                <p style="text-align: justify;">
-                  Si has decidido realizar tu boda en un hotel, somos los indicados con el mejor servicio, mejor capacidad instalada y mejor ambiente. Recuerda que debe ser un lugar céntrico o cercano a donde se
-                  realizará la ceremonia, pensamos en todo para que tengas un día especial y único.
-                </p>
-              </div>
-              <span>
-                <a href="https://www.bodas.com.gt/hotel-hoteles-bodas-guatemala" target="_blank" class="ready-btn">Descubrir más</a>
-              </span>
-            </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a>
-                  <img src="https://i0.wp.com/foodandpleasure.com/wp-content/uploads/2018/08/Celebrar-las-fiestas-patrias-2.jpeg?fit=2048%2C1365&ssl=1" alt="">
-                </a>
-              </div>
-              <br>
-              <div class="blog-text">
-                <h4>
-                  <a>Fiestas Inolvidables</a>
-                </h4>
-                <p style="text-align: justify;">
-                  Las mejores fiestas, para todo tipo de ocasión, fiestas de graduación, de cumpleaños, por cualquier motivo, haremos de tu fiesta, un evento que, tus invitados, jamás olvidarán. Disfruta un momento
-                  único, cualquier idea que tengas, la hacemos realidad. ¡A bailar!
-                </p>
-              </div>
-              <span>
-                <a href="https://www.guatemala.com/guias/pasatiempos/lugares-para-hacer-fiestas-de-graduacion-en-la-ciudad-de-guatemala/hotel-barcelo.html" target="_blank" class="ready-btn">Descubrir más</a>
-              </span>
-            </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Right Blog-->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a>
-                  <img src="https://live.staticflickr.com/7114/7708567204_36bd6bb1c5_b.jpg" alt="">
-                </a>
-              </div>
-              <br>
-              <div class="blog-text">
-                <h4>
-                  <a>Convenciones o Juntas</a>
-                </h4>
-                <p style="text-align: justify;">
-                 Lleva a cabo convenciones de todo tipo, Empresariales o corporativos, Sociales, Deportivos, Culturales o incluso Educativos, recuerda que, este tipo de eventos agrupan una comunidad que ejerce
-                 la misma profesión con asistencia voluntaria.
-                </p>
-              </div>
-              <span>
-                <a href="https://grandhotelier.com/grupos-y-convenciones/" target="_blank" class="ready-btn">Descubrir más</a>
-              </span>
-            </div>
-          </div>
-          <!-- End Right Blog-->
         </div>
       </div>
     </div>
-  </div><!-- End Blog Section -->
+  </div>
 
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://www.granhotelmiramarmalaga.com/wp-content/blogs.dir/1833/files/gallery-spa/spa-galeria-foto04.jpg" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery">
+              <h4>Hotel de Lujo</h4>
+              <span>Piscina, Spa y Mucho más</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</section><!-- End Services Section -->
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://www.valldemossahotel.com/wp-content/uploads/2019/02/MG_4248-1.jpg" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery">
+              <h4>La Belleza del Hotel</h4>
+              <span>Servicios de Calidad</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://tecnohotelnews.com/wp-content/uploads/2017/12/sauna.jpg" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery">
+              <h4>Los Mejores Servicios</h4>
+              <span>Sauna, Visita y Descansa</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://www.mobydecmuebles.com/wp-content/uploads/2018/10/sala-de-juegos-1.jpg" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery" >
+              <h4>Salas de Juegos</h4>
+              <span>Lugares Inolvidables</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+    <div class="single-awesome-project">
+      <div class="awesome-img">
+        <a href="#"><img src="https://media-cdn.tripadvisor.com/media/photo-s/02/8b/f2/e2/hotel-morrison-114.jpg" alt="" /></a>
+        <div class="add-actions text-center">
+          <div class="project-dec">
+            <a class="portfolio-lightbox" data-gallery="myGallery" >
+              <h4>Intalaciones Preciosas</h4>
+              <span>Te Esperamos</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</section><!-- End Cta Section -->
 
 
 <app-footer></app-footer>

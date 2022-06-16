@@ -10,6 +10,7 @@ import { HotelesComponent } from './components/hoteles/hoteles.component';
 import { DashboardHotelesComponent } from './components/dashboard-hoteles/dashboard-hoteles.component';
 import { AdministracionUsuariosComponent } from './components/administracion-usuarios/administracion-usuarios.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
+import { ServiciosHotelComponent } from './components/servicios-hotel/servicios-hotel.component';
 
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
@@ -31,7 +32,9 @@ const routes: Routes = [
       {path: 'Hoteles', component: HotelesComponent},
 
       {path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
-      //{path: 'Habitaciones', component: HabitacionesComponent},
+
+      {path: 'ServiciosHotel', component: ServiciosHotelComponent},
+      //{path: 'ServiciosHotel/:idHotel', component: ServiciosHotelComponent},
     ]
   },
   {

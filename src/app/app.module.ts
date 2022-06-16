@@ -17,15 +17,13 @@ import { PerfilClienteComponent } from './components/perfil-cliente/perfil-clien
 import { DashboardHotelesComponent } from './components/dashboard-hoteles/dashboard-hoteles.component';
 import { AdministracionUsuariosComponent } from './components/administracion-usuarios/administracion-usuarios.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
+import { ServiciosHotelComponent } from './components/servicios-hotel/servicios-hotel.component';
 
 import { ChartsModule } from '@rinminase/ng-charts';
 
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
 import { FooterComponent } from './components/footer/footer.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -44,6 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FooterComponent,
     AdministracionUsuariosComponent,
     HabitacionesComponent,
+    ServiciosHotelComponent,
   ],
   imports: [
     BrowserModule,

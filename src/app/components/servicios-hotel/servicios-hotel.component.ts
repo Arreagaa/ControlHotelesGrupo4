@@ -7,12 +7,12 @@ import { ActivatedRoute } from '@angular/router';
 //HABITACIONES
 
 @Component({
-  selector: 'app-habitaciones',
-  templateUrl: './habitaciones.component.html',
-  styleUrls: ['./habitaciones.component.scss'],
+  selector: 'app-servicios-hotel',
+  templateUrl: './servicios-hotel.component.html',
+  styleUrls: ['./servicios-hotel.component.scss'],
   providers: [ HotelesService, UsuarioService ]
 })
-export class HabitacionesComponent implements OnInit {
+export class ServiciosHotelComponent implements OnInit {
 
   public token;
   public idHotel;
