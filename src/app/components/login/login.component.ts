@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
           }
 
           if(response.usuario.rol == 'ROL_HOTEL'){
-            this._router.navigate(['/Hotel/Habitaciones/:idHotel'])
+            this._router.navigate(['/Hotel/Habitaciones'])
           }
         });
         Swal.fire({

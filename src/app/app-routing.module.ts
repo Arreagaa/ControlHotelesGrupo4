@@ -48,7 +48,7 @@ const routes: Routes = [
   },
   {
     path: 'Hotel', canActivate: [AdministradorHotelGuard], children:[
-      {path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
+      {path: 'Habitaciones', component: HabitacionesComponent},
 
     ]
   },
