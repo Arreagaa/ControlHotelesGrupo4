@@ -274,38 +274,17 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-title">
-              <h2>ORGANIZA TU EVENTO</h2>
+              <h2 href="https://www.vinccihoteles.com/blog-expert/tipos-de-eventos-en-hoteles/" target="_blank">ORGANIZA TU EVENTO</h2>
             </div>
           </div>
         </div>
+        <button *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" class="btn btn-primary" type="button"data-bs-toggle="modal" data-bs-target="#modalAgregarEvento">
+          <i class="bi bi-file-earmark-plus"></i> Agregar Evento</button>
+          <br><br><br>
+
         <div class="row">
           <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a>
-                  <img src="https://image-tc.galaxy.tf/wijpeg-a5bn48mkmwpmp3ai7ybpukge1/file.jpg?width=1920" alt="">
-                </a>
-              </div>
-              <br>
-              <div class="blog-text">
-                <h4>
-                  <a>Boda de Ensueño</a>
-                </h4>
-                <p style="text-align: justify;">
-                  Si has decidido realizar tu boda en un hotel, somos los indicados con el mejor servicio, mejor capacidad instalada y mejor ambiente. Recuerda que debe ser un lugar céntrico o cercano a donde se
-                  realizará la ceremonia, pensamos en todo para que tengas un día especial y único.
-                </p>
-              </div>
-              <span>
-                <a href="https://www.bodas.com.gt/hotel-hoteles-bodas-guatemala" target="_blank" class="ready-btn">Descubrir más</a>
-              </span>
-            </div>
-          </div><!-- End Left Blog-->
-
-          <!--Cards de Ejemplo-->
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;" *ngFor="let evento of eventoModelGet">
             <div class="single-blog">
               <div class="single-blog-img">
                 <a>
@@ -315,50 +294,31 @@
               <br>
               <div class="blog-text">
                 <h4>
-                  <a>Fiestas Inolvidables</a>
+                  <a>{{ evento.evento }}</a>
                 </h4>
                 <p style="text-align: justify;">
-                  Las mejores fiestas, para todo tipo de ocasión, fiestas de graduación, de cumpleaños, por cualquier motivo, haremos de tu fiesta, un evento que, tus invitados, jamás olvidarán. Disfruta un momento
-                  único, cualquier idea que tengas, la hacemos realidad. ¡A bailar!
+                  {{evento.descripcion}}. Si has decidido realizar tu evento en un hotel, somos los indicados con el mejor servicio, mejor capacidad instalada y más comodidades.
+                  Recuerda que debe ser un lugar vistoso. Precio desde {{evento.precio}} USD.
                 </p>
               </div>
               <span>
-                <a href="https://www.guatemala.com/guias/pasatiempos/lugares-para-hacer-fiestas-de-graduacion-en-la-ciudad-de-guatemala/hotel-barcelo.html" target="_blank" class="ready-btn">Descubrir más</a>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'" class="ready-btn">Agregar a Factura</a>
               </span>
-            </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Right Blog-->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a>
-                  <img src="https://live.staticflickr.com/7114/7708567204_36bd6bb1c5_b.jpg" alt="">
-                </a>
-              </div>
-              <br>
-              <div class="blog-text">
-                <h4>
-                  <a>Convenciones o Juntas</a>
-                </h4>
-                <p style="text-align: justify;">
-                 Lleva a cabo convenciones de todo tipo, Empresariales o corporativos, Sociales, Deportivos, Culturales o incluso Educativos, recuerda que, este tipo de eventos agrupan una comunidad que ejerce
-                 la misma profesión con asistencia voluntaria.
-                </p>
-              </div>
+
               <span>
-                <a href="https://grandhotelier.com/grupos-y-convenciones/" target="_blank" class="ready-btn">Descubrir más</a>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" data-bs-toggle="modal" data-bs-target="#modalEditarEvento" (click)="getEventoId(evento._id)" class="ready-btn">Editar Evento</a>
+              </span>
+
+              <span>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" (click)="deleteEvento(evento._id)" class="ready-btn">Eliminar Evento</a>
               </span>
             </div>
           </div>
-          <!-- End Right Blog-->
+
         </div>
       </div>
     </div>
   </div><!-- End Blog Section -->
-
-
 </section><!-- End Services Section -->
 
 
@@ -396,7 +356,7 @@
             <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
             [(ngModel)]="roomlModelPost.precio">
               <div [hidden]="precio.valid || precio.pristine"
-                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+                class="alert alert-danger">Se requiere colocar el Precio Base para continuar.
               </div>
           </div>
 
@@ -453,7 +413,7 @@
             <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
             [(ngModel)]="roomModelGetId.precio">
               <div [hidden]="precio.valid || precio.pristine"
-                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+                class="alert alert-danger">Se requiere colocar el Precio Base para continuar.
               </div>
           </div>
 
@@ -470,6 +430,110 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" (click)="putRooms()" data-bs-dismiss="modal">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Agregar Evento-->
+<div class="modal fade" id="modalAgregarEvento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Agregar Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+
+          <div class="mb-3">
+            <label for="inputNombreEvento" class="form-label">Nombre del Evento</label>
+            <input placeholder="Grand Suite" type="text" class="form-control" name="evento" #evento="ngModel" required
+            [(ngModel)]="eventolModelPost.evento">
+              <div [hidden]="evento.valid || evento.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripción del Evento</label>
+            <input placeholder="Suite" type="text" class="form-control" name="descripcion" #descripcion="ngModel" required
+            [(ngModel)]="eventolModelPost.descripcion">
+              <div [hidden]="descripcion.valid || descripcion.pristine"
+                class="alert alert-danger">Se requiere colocar la Descripción para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Precio de la Habitación</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="eventolModelPost.precio">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputIdHotel" class="form-label">Confirmación del Hotel</label>
+            <input placeholder="Identifación" type="text" class="form-control" name="idHotel" #idHotel="ngModel" required
+            [(ngModel)]="eventolModelPost.idHotel">
+              <div [hidden]="idHotel.valid || idHotel.pristine"
+                class="alert alert-danger">Se requiere colocar la Hotel Base para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postEventos(addForm)" data-bs-dismiss="modal">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Editar Evento-->
+<div class="modal fade" id="modalEditarEvento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Editar Datos del Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+            <label for="inputNombreEvento" class="form-label">Nombre del Evento</label>
+            <input placeholder="Grand Suite" type="text" class="form-control" name="evento" #evento="ngModel" required
+            [(ngModel)]="eventoModelGetId.evento">
+              <div [hidden]="evento.valid || evento.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripción del Evento</label>
+            <input placeholder="Suite" type="text" class="form-control" name="descripcion" #descripcion="ngModel" required
+            [(ngModel)]="eventoModelGetId.descripcion">
+              <div [hidden]="descripcion.valid || descripcion.pristine"
+                class="alert alert-danger">Se requiere colocar la Descripción para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Precio de la Habitación</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="eventoModelGetId.precio">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar el Precio Base para continuar.
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="putEventos()" data-bs-dismiss="modal">Editar</button>
       </div>
     </div>
   </div>
