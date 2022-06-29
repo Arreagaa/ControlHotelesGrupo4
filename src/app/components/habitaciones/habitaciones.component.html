@@ -263,6 +263,50 @@
   </div>
 </section><!-- End Services Section -->
 
+<section class="services section-bg">
+  <div class="container">
+
+    <button *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" class="btn btn-primary" type="button"data-bs-toggle="modal" data-bs-target="#modalAgregarServicio">
+      <i class="bi bi-file-earmark-plus"></i> Agregar Servicio</button>
+      <br><br><br>
+    <div class="row">
+      <div class="card mb-3 text-center" style="max-width: 625px" *ngFor="let servicio of servicioModelGet" >
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img ngClass="imagen-card" src="https://www.xtrafondos.com/wallpapers/vertical/edificios-en-ciudad-9082.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="section-title1">
+                <h4 class="card-title" style="text-align: center;">{{ servicio.servicio }}</h4>
+              </div>
+              <h6 class="card-title" style="text-align: center;">¡Nuestros Servicios!</h6>
+              <br>
+
+              <p class="card-text" style="justify-self: start;">Se pretende triunfar, atrapar clientes y que ellos vuelvan a elegirlos, habrá que escucharlos y prestar atención a
+                sus necesidades, quejas y gustos.
+              </p>
+
+              <p class="card-text" style="text-align:center;"><i class="bi bi-people-fill"></i> Precio de {{servicio.precio}} USD.</p>
+
+              <span data-tooltip="Modificar al Servicio" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" (click)="getServicioId(servicio._id)">
+                  <i class="bi bi-pencil-square"></i></button>
+              </span>
+
+              <span data-tooltip="Eliminar al Servicio" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'">
+                <button class="btn btn-primary" (click)="deleteServicio(servicio._id)">
+                  <i class="bi bi-file-earmark-minus"></i></button>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ </div>
+</section>
 
 <section id="services" class="services section-bg">
 
@@ -448,7 +492,7 @@
 
           <div class="mb-3">
             <label for="inputNombreEvento" class="form-label">Nombre del Evento</label>
-            <input placeholder="Grand Suite" type="text" class="form-control" name="evento" #evento="ngModel" required
+            <input placeholder="Boda de Ensueño" type="text" class="form-control" name="evento" #evento="ngModel" required
             [(ngModel)]="eventolModelPost.evento">
               <div [hidden]="evento.valid || evento.pristine"
                 class="alert alert-danger">Se requiere colocar el Nombre para continuar.
@@ -457,7 +501,7 @@
 
           <div class="mb-3">
             <label for="inputDescripcion" class="form-label">Descripción del Evento</label>
-            <input placeholder="Suite" type="text" class="form-control" name="descripcion" #descripcion="ngModel" required
+            <input placeholder="Descripción" type="text" class="form-control" name="descripcion" #descripcion="ngModel" required
             [(ngModel)]="eventolModelPost.descripcion">
               <div [hidden]="descripcion.valid || descripcion.pristine"
                 class="alert alert-danger">Se requiere colocar la Descripción para continuar.
@@ -534,6 +578,54 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" (click)="putEventos()" data-bs-dismiss="modal">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Agregar Evento-->
+<div class="modal fade" id="modalAgregarServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Agregar Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (reset)="addForm">
+
+          <div class="mb-3">
+            <label for="inputNombreServicio" class="form-label">Nombre del Servicio</label>
+            <input placeholder="Restaurante" type="text" class="form-control" name="servicio" #servicio="ngModel" required
+            [(ngModel)]="servicioModelPost.servicio">
+              <div [hidden]="servicio.valid || servicio.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Precio del Servicio</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="servicioModelPost.precio">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputIdHotel" class="form-label">Confirmación del Hotel</label>
+            <input placeholder="Identifación" type="text" class="form-control" name="idHotel" #idHotel="ngModel" required
+            [(ngModel)]="servicioModelPost.idHotel">
+              <div [hidden]="idHotel.valid || idHotel.pristine"
+                class="alert alert-danger">Se requiere colocar la Hotel Base para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postServicios(addForm)" data-bs-dismiss="modal">Agregar</button>
       </div>
     </div>
   </div>

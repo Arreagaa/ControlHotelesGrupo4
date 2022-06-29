@@ -11,12 +11,15 @@ import { RoomService } from 'src/app/services/room.service';
 //EVENTOS
 import { Evento } from 'src/app/models/evento.model';
 import { EventoService } from 'src/app/services/eventos.service';
+//SERVICIOS
+import { Servicio } from 'src/app/models/servicio.model';
+import { ServicioService } from 'src/app/services/servicios.service';
 
 @Component({
   selector: 'app-habitaciones',
   templateUrl: './habitaciones.component.html',
   styleUrls: ['./habitaciones.component.scss'],
-  providers: [ HotelesService, UsuarioService, RoomService ]
+  providers: [ HotelesService, UsuarioService, RoomService, ServicioService]
 })
 export class HabitacionesComponent implements OnInit {
 
@@ -32,13 +35,18 @@ export class HabitacionesComponent implements OnInit {
   public roomlModelPost: Room;
   public roomModelGetId: Room;
 
+  //SERVICIOS
+  public servicioModelGet: Servicio;
+  public servicioModelPost: Servicio;
+  public servicioModelGetId: Servicio;
+
   //EVENTOS
   public eventoModelGet: Evento;
   public eventolModelPost: Evento;
   public eventoModelGetId: Evento;
 
   constructor(private _hotelesService: HotelesService, public _usuarioService: UsuarioService, public _activatedRoute: ActivatedRoute, public _roomService : RoomService,
-    public _eventoService: EventoService) {
+    public _eventoService: EventoService, public _servicioService: ServicioService) {
     this.hotelModelGetId = new Hotel('','', '','', '', '',0,'');
     this.token = this._usuarioService.obtenerToken();
 
@@ -49,6 +57,10 @@ export class HabitacionesComponent implements OnInit {
     //EVENTOS
     this.eventolModelPost = new Evento('','', '',0,'');
     this.eventoModelGetId = new Evento('','', '',0,'');
+
+    //SERVICIOS
+    this.servicioModelPost = new Servicio('','',0,'');
+    this.servicioModelGetId = new Servicio('','',0,'');
   }
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((dataRuta)=>{
@@ -57,6 +69,7 @@ export class HabitacionesComponent implements OnInit {
       this.idHotel = dataRuta.get('idHotel')
     });
     this.getRooms();
+    this.getServicios();
     this.getEventos();
   }
 
@@ -76,6 +89,7 @@ export class HabitacionesComponent implements OnInit {
   }
 
   //ROOMS DEL HOTEL
+
   getRooms(){
     this._roomService.obtenerRooms().subscribe(
       (response) => {
@@ -156,6 +170,96 @@ export class HabitacionesComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.getRooms();
+      },
+      (error)=>{
+        console.log(<any>error);
+
+      }
+    )
+  }
+
+  //SERVICIOS DEL HOTEL
+
+  getServicios(){
+    this._servicioService.obtenerServicios().subscribe(
+      (response) => {
+        this.servicioModelGet = response.servicios;
+        console.log(response);
+        console.log(this.servicioModelGet);
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  getServicioId(idServicio){
+    this._servicioService.obtenerServicioId(idServicio, this._usuarioService.obtenerToken()).subscribe(
+      (response) => {
+        this.servicioModelGetId = response.servicios;
+        console.log(response);
+        console.log(this.servicioModelGetId);
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  postServicios(addForm){
+    this._servicioService.agregarServicio(this.servicioModelPost, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getServicios();
+        addForm.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha agregado el Servicio Correctamente',
+          text: '¡Puedes Revisar el cambio!',
+          footer: '<a>Puedes verificar el nuevo Servicio.</a>'
+        })
+      },
+      (error)=>{
+        console.log(<any>error);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Algo no anda bien...',
+          text: '¡Revisa que la información este correcta!',
+          footer: '<a>No dejes campos vacios, ¡gracias!</a>'
+        })
+      }
+    )
+  }
+
+  putServicios(){
+    this._servicioService.editarServicio(this.servicioModelGetId, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getServicios();
+        Swal.fire({
+          icon: 'warning',
+          title: 'Se han realizado cambios en el Servicio',
+          text: '¡Puedes Revisar el Servicio Actualizada!',
+          footer: '<a>Función concretada correctamente.</a>'
+        })
+      },
+      (error)=>{
+        console.log(<any>error);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Algo no anda bien...',
+          text: '¡Revisa que la información este correcta!',
+          footer: 'No dejes campos vacios, ¡gracias!'
+        })
+      }
+    )
+  }
+
+  deleteServicio(idServicio) {
+    this._servicioService.eliminarServicio(idServicio, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getServicios();
       },
       (error)=>{
         console.log(<any>error);

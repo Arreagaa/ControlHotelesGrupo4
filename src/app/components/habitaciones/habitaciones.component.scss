@@ -666,3 +666,39 @@ input[type="radio"]:checked ~ label {
 .about .row{
   text-align:justify;
 }
+
+[data-tooltip]{
+  position:relative;
+  }
+  [data-tooltip]::before {
+  content : attr(data-tooltip);
+  background-color:white;
+  opacity: 100%;
+  color:#283a5ae6;
+  -webkit-font-smoothing: antialiased;
+  width:150px;
+  padding:10px;
+  height:auto;
+  border-radius:3px;
+  display:none;
+  position:absolute;
+  bottom:25px;
+  left:calc(100% - 75%);
+  pointer-events: none;
+  z-index:99;
+   }
+  [data-tooltip]::after{
+  content:"";
+  height:1px;
+  width:1px;
+  border:10px solid transparent;
+  border-top-color:white;
+  opacity: 90%;
+  position:absolute;
+  bottom:4px;
+  left:50%;
+  display: none;
+  }
+  [data-tooltip]:hover::before,
+  [data-tooltip]:hover::after
+  { display:block;}
