@@ -12,11 +12,11 @@ export class RoomService {
 
   constructor(public _http: HttpClient) { }
 
-  obtenerRooms(): Observable<any> {
+  obtenerRooms(id: String): Observable<any> {
     //let headersToken = this.headersVariable.set('Authorization', token)
 
     //return this._http.get(this.url + '/obtenerHoteles', { headers: headersToken })
-    return this._http.get(this.url + '/obtenerRooms', { headers: this.headersVariable })
+    return this._http.get(this.url + '/obtenerRooms/' + id, { headers: this.headersVariable })
   }
 
   agregarRoom(RoomModel: Room, token): Observable<any> {

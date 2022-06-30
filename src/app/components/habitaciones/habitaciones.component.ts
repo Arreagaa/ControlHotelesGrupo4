@@ -68,7 +68,13 @@ export class HabitacionesComponent implements OnInit {
 
       this.idHotel = dataRuta.get('idHotel')
     });
-    this.getRooms();
+
+    this._activatedRoute.paramMap.subscribe((dataRuta)=>{
+      this.getRooms(dataRuta.get('idHotel'));
+
+      this.idHotel = dataRuta.get('idHotel')
+    })
+    //this.getRooms();
     this.getServicios();
     this.getEventos();
   }
@@ -90,8 +96,8 @@ export class HabitacionesComponent implements OnInit {
 
   //ROOMS DEL HOTEL
 
-  getRooms(){
-    this._roomService.obtenerRooms().subscribe(
+  getRooms(idHotel){
+    this._roomService.obtenerRooms(idHotel).subscribe(
       (response) => {
         this.roomModelGet = response.rooms;
         console.log(response);
@@ -120,7 +126,7 @@ export class HabitacionesComponent implements OnInit {
     this._roomService.agregarRoom(this.roomlModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getRooms();
+        this.getRooms(this.idHotel);
         addForm.reset();
         Swal.fire({
           icon: 'success',
@@ -145,7 +151,7 @@ export class HabitacionesComponent implements OnInit {
     this._roomService.editarRoom(this.roomModelGetId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getRooms();
+        this.getRooms(this.idHotel);
         Swal.fire({
           icon: 'warning',
           title: 'Se han realizado cambios en la Habitación',
@@ -169,7 +175,7 @@ export class HabitacionesComponent implements OnInit {
     this._roomService.eliminarRoom(idRoom, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getRooms();
+        this.getRooms(this.idHotel);
       },
       (error)=>{
         console.log(<any>error);
