@@ -299,6 +299,9 @@
                   <i class="bi bi-file-earmark-minus"></i></button>
               </span>
 
+                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
+                  <i class="bi bi-building"></i> Agregar a Factura</button>
+
             </div>
           </div>
         </div>
@@ -410,6 +413,15 @@
             [(ngModel)]="roomlModelPost.disponibilidad">
               <div [hidden]="disponibilidad.valid || disponibilidad.pristine"
                 class="alert alert-danger">Se requiere colocar la Disponibilidad para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputIdHotel" class="form-label">Confirmación del Hotel</label>
+            <input placeholder="Identifación" type="text" class="form-control" name="idHotel" #idHotel="ngModel" required
+            [(ngModel)]="roomlModelPost.idHotel">
+              <div [hidden]="idHotel.valid || idHotel.pristine"
+                class="alert alert-danger">Se requiere colocar la Hotel Base para continuar.
               </div>
           </div>
 
@@ -583,7 +595,7 @@
   </div>
 </div>
 
-<!--Modal Agregar Evento-->
+<!--Modal Agregar Servicio-->
 <div class="modal fade" id="modalAgregarServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -630,6 +642,46 @@
     </div>
   </div>
 </div>
+
+<!--Modal Editar Servicio-->
+<div class="modal fade" id="modalEditarServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Editar Datos del Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+            <label for="inputNombreServicio" class="form-label">Nombre del Servicio</label>
+            <input placeholder="Restaurante" type="text" class="form-control" name="servicio" #servicio="ngModel" required
+            [(ngModel)]="servicioModelGetId.servicio">
+              <div [hidden]="servicio.valid || servicio.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Precio del Servicio</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="servicioModelGetId.precio">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="putServicios()" data-bs-dismiss="modal">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <app-footer></app-footer>
 </main>
