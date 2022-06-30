@@ -12,11 +12,11 @@ export class EventoService {
 
   constructor(public _http: HttpClient) { }
 
-  obtenerEventos(): Observable<any> {
-    //let headersToken = this.headersVariable.set('Authorization', token)
+  obtenerEventos(id:String, token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token)
 
     //return this._http.get(this.url + '/obtenerHoteles', { headers: headersToken })
-    return this._http.get(this.url + '/obtenerEventos', { headers: this.headersVariable })
+    return this._http.get(this.url + '/obtenerEventos/' +id, { headers: headersToken })
   }
 
   agregarEvento(EventoModel: Evento, token): Observable<any> {

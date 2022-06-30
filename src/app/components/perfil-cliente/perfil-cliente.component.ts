@@ -26,7 +26,7 @@ export class PerfilClienteComponent implements OnInit {
   constructor(
     public _usuarioService:UsuarioService,
     public _router: Router
-    ) { this.usuarioModelId = new Usuario('','','','','','','');}
+    ) { this.usuarioModelId = new Usuario('','','','','','','','');}
 
   ngOnInit(): void {
 

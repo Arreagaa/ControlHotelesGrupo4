@@ -6,6 +6,7 @@ export class Usuario {
     public password: String,
     public direccion: String,
     public pais: string,
-    public rol: String
+    public rol: String,
+    public idHotel: String
   ){}
 }

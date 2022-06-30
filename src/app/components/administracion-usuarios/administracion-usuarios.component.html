@@ -240,23 +240,33 @@
       <div class="modal-body">
         <form>
 
-          <div class="mb-3">
+          <!--<div class="mb-3">
             <label for="inputRol" class="form-label">Editar Rol del Usuario</label>
             <input placeholder="ROL_HOTEL" type="text" class="form-control" name="rol" #rol="ngModel" required
             [(ngModel)]="usuarioModelGetId.rol">
               <div [hidden]="rol.valid || rol.pristine"
                 class="alert alert-danger">Se requiere colocar el Rol para continuar.
               </div>
+          </div>-->
+
+          <div class="form-group">
+            <label for="direccioSucursal">Editar Rol del Usuario</label>
+            <select id="rol" style="width:100%; height: 2rem;" name="rol" #rol="ngModel"
+            [(ngModel)]="usuarioModelGetId.rol" required>
+            <option value="ROL_CLIENTE">ROL_CLIENTE</option>
+            <option value="ROL_HOTEL">ROL_HOTEL</option>
+          </select>
+
           </div>
 
-          <!--<div class="mb-3">
+          <div class="mb-3">
             <label for="inputIdHotel" class="form-label">Editar Lugar de Trabajo</label>
             <input placeholder="identificación del Hotel" type="text" class="form-control" name="idHotel" #idHotel="ngModel" required
             [(ngModel)]="usuarioModelGetId.idHotel">
               <div [hidden]="idHotel.valid || idHotel.pristine"
                 class="alert alert-danger">Se requiere colocar el Rol para continuar.
               </div>
-          </div>-->
+          </div>
 
         </form>
       </div>

@@ -12,11 +12,11 @@ export class ServicioService {
 
   constructor(public _http: HttpClient) { }
 
-  obtenerServicios(): Observable<any> {
-    //let headersToken = this.headersVariable.set('Authorization', token)
+  obtenerServicios(id:String, token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token)
 
     //return this._http.get(this.url + '/obtenerHoteles', { headers: headersToken })
-    return this._http.get(this.url + '/obtenerServicios', { headers: this.headersVariable })
+    return this._http.get(this.url + '/obtenerServicios/' +id, { headers: headersToken })
   }
 
   agregarServicio(ServicioModel: Servicio, token): Observable<any> {

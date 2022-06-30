@@ -73,31 +73,46 @@ export class HabitacionesComponent implements OnInit {
       this.getRooms(dataRuta.get('idHotel'));
 
       this.idHotel = dataRuta.get('idHotel')
+    });
+
+    this._activatedRoute.paramMap.subscribe((dataRuta)=>{
+      this.getServicios(dataRuta.get('idHotel'));
+
+      this.idHotel = dataRuta.get('idHotel')
+    });
+
+    this._activatedRoute.paramMap.subscribe((dataRuta)=>{
+      this.getEventos(dataRuta.get('idHotel'));
+
+      this.idHotel = dataRuta.get('idHotel')
     })
     //this.getRooms();
-    this.getServicios();
-    this.getEventos();
+    //this.getServicios();
+    //this.getEventos();
   }
 
   //OBTENER DATOS DEL HOTEL POR SU ID
   getHotelId(idHotel){
-    this._hotelesService.obtenerHotelId(idHotel, this._usuarioService.obtenerToken()).subscribe(
-      (response) => {
-        this.hotelModelGetId = response.hoteles;
-        console.log(response.hoteles);
-        console.log(response);
-        console.log(this.hotelModelGetId);
-      },
-      (error)=>{
-        console.log(<any>error)
-      }
-    )
+    if(this._usuarioService.obtenerIdentidad().rol == 'ROL_CLIENTE'){
+      this._hotelesService.obtenerHotelId(idHotel, this._usuarioService.obtenerToken()).subscribe(
+        (response) => {
+          this.hotelModelGetId = response.hoteles;
+          console.log(response.hoteles);
+          console.log(response);
+          console.log(this.hotelModelGetId);
+        },
+        (error)=>{
+          console.log(<any>error)
+        }
+      )
+    }
+
   }
 
   //ROOMS DEL HOTEL
 
   getRooms(idHotel){
-    this._roomService.obtenerRooms(idHotel).subscribe(
+    this._roomService.obtenerRooms(idHotel,this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.roomModelGet = response.rooms;
         console.log(response);
@@ -186,8 +201,8 @@ export class HabitacionesComponent implements OnInit {
 
   //SERVICIOS DEL HOTEL
 
-  getServicios(){
-    this._servicioService.obtenerServicios().subscribe(
+  getServicios(idHotel){
+    this._servicioService.obtenerServicios(idHotel,this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.servicioModelGet = response.servicios;
         console.log(response);
@@ -216,7 +231,7 @@ export class HabitacionesComponent implements OnInit {
     this._servicioService.agregarServicio(this.servicioModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getServicios();
+        this.getServicios(this.idHotel);
         addForm.reset();
         Swal.fire({
           icon: 'success',
@@ -241,7 +256,7 @@ export class HabitacionesComponent implements OnInit {
     this._servicioService.editarServicio(this.servicioModelGetId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getServicios();
+        this.getServicios(this.idHotel);
         Swal.fire({
           icon: 'warning',
           title: 'Se han realizado cambios en el Servicio',
@@ -265,7 +280,7 @@ export class HabitacionesComponent implements OnInit {
     this._servicioService.eliminarServicio(idServicio, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getServicios();
+        this.getServicios(this.idHotel);
       },
       (error)=>{
         console.log(<any>error);
@@ -276,8 +291,8 @@ export class HabitacionesComponent implements OnInit {
 
   //EVENTOS DEL HOTEL
 
-  getEventos(){
-    this._eventoService.obtenerEventos().subscribe(
+  getEventos(idHotel){
+    this._eventoService.obtenerEventos(idHotel,this._usuarioService.obtenerToken()).subscribe(
       (response) => {
         this.eventoModelGet = response.eventos;
         console.log(response);
@@ -306,7 +321,7 @@ export class HabitacionesComponent implements OnInit {
     this._eventoService.agregarEvento(this.eventolModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getEventos();
+        this.getEventos(this.idHotel);
         addForm.reset();
         Swal.fire({
           icon: 'success',
@@ -331,7 +346,7 @@ export class HabitacionesComponent implements OnInit {
     this._eventoService.editarEvento(this.eventoModelGetId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getEventos();
+        this.getEventos(this.idHotel);
         Swal.fire({
           icon: 'warning',
           title: 'Se han realizado cambios en el Evento',
@@ -355,7 +370,7 @@ export class HabitacionesComponent implements OnInit {
     this._eventoService.eliminarEvento(idEvento, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
-        this.getEventos();
+        this.getEventos(this.idHotel);
       },
       (error)=>{
         console.log(<any>error);

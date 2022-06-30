@@ -18,7 +18,7 @@ export class RegistroComponent implements OnInit {
   public usuarioModelPost: Usuario;
 
   constructor(private _usuarioService: UsuarioService) {
-    this.usuarioModelPost = new Usuario('','', '','', '', '','');
+    this.usuarioModelPost = new Usuario('','', '','', '', '','','');
    }
 
   ngOnInit(): void {

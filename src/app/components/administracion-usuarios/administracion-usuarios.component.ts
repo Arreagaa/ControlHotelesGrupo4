@@ -21,8 +21,8 @@ export class AdministracionUsuariosComponent implements OnInit {
   public usuarioModelGetId: Usuario;
 
   constructor(private _usuarioService: UsuarioService) {
-    this.usuarioModelPost = new Usuario('','', '','', '', '','');
-    this.usuarioModelGetId = new Usuario('','','','','','','');
+    this.usuarioModelPost = new Usuario('','', '','', '', '','','');
+    this.usuarioModelGetId = new Usuario('','','','','','','', '');
     this.token = this._usuarioService.obtenerToken();
   }
 
