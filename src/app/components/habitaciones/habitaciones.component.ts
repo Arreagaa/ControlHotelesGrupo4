@@ -51,8 +51,8 @@ export class HabitacionesComponent implements OnInit {
     this.token = this._usuarioService.obtenerToken();
 
     //ROOMS
-    this.roomlModelPost = new Room('','', '',0,'','');
-    this.roomModelGetId = new Room('','', '',0,'','');
+    this.roomlModelPost = new Room('','', '',0,true,'');
+    this.roomModelGetId = new Room('','', '',0,true,'');
 
     //EVENTOS
     this.eventolModelPost = new Evento('','', '',0,'');

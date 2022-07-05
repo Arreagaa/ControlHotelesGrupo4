@@ -4,7 +4,7 @@ export class Room {
     public nombreRoom: String,
     public tipo: String,
     public precio: Number,
-    public disponibilidad: String,
+    public disponibilidad: Boolean,
     public idHotel: String
   ){}
 }
