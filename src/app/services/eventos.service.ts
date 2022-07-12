@@ -44,5 +44,12 @@ export class EventoService {
     return this._http.delete(this.url + '/eliminarEvento/' + id, { headers: headersToken })
   }
 
+  comprarEvento(id:String, EventoModel: Evento, token): Observable<any> {
+    let parametros = JSON.stringify(EventoModel);
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.post(this.url + '/comprarEvento/' + id, parametros, {headers: headersToken})
+  }
+
 }
 

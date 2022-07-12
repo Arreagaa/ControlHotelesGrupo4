@@ -30,6 +30,8 @@ export class HabitacionesComponent implements OnInit {
   public token;
   public idHotel;
   public idRoom;
+  public idServicio;
+  public idEvento;
 
   //DATOS DEL HOTEL
   public hotelModelGet: Hotel;
@@ -65,11 +67,11 @@ export class HabitacionesComponent implements OnInit {
     this.roomModelGetId = new Room('','', '',0,true,'');
 
     //EVENTOS
-    this.eventolModelPost = new Evento('','', '',0,true,'');
+    this.eventolModelPost = new Evento('','', '',0,true,this.idHotel);
     this.eventoModelGetId = new Evento('','', '',0,true,'');
 
     //SERVICIOS
-    this.servicioModelPost = new Servicio('','',0,true,'');
+    this.servicioModelPost = new Servicio('','',0,true,this.idHotel);
     this.servicioModelGetId = new Servicio('','',0,true,'');
 
     //RESERVACIONES
@@ -82,6 +84,8 @@ export class HabitacionesComponent implements OnInit {
 
       this.idHotel = dataRuta.get('idHotel');
       this.reservacionlModelPost = new Reservacion('',this.idHotel,'','','',0);
+      this.servicioModelPost = new Servicio('','',0,true,this.idHotel);
+      this.eventolModelPost = new Evento('','', '',0,true,this.idHotel);
     });
 
     this._activatedRoute.paramMap.subscribe((dataRuta)=>{
@@ -101,13 +105,6 @@ export class HabitacionesComponent implements OnInit {
 
       this.idHotel = dataRuta.get('idHotel')
     });
-
-    /*this._activatedRoute.paramMap.subscribe((dataRuta)=>{
-      this.getReservaId(dataRuta.get('idRoom'));
-      console.log(this.idRoom);
-      this.idRoom = dataRuta.get('idRoom')
-    });*/
-
 
     this.getReserva();
 
@@ -274,6 +271,34 @@ export class HabitacionesComponent implements OnInit {
     )
   }
 
+  postCompraServicio(addForm,idServicio){
+    this._servicioService.comprarServicio(this.servicioModelGetId._id, this.servicioModelPost, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        console.log(this.idHotel);
+        this.getServicios(this.idHotel);
+        //this.getReserva();
+        addForm.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha realizado la Compra Correctamente',
+          text: '¡Gracias por confiar en nuestro Gran Hotel!',
+          footer: '<a>Nos alegra tu próxima Visita.</a>'
+        })
+      },
+      (error)=>{
+        console.log(<any>error);
+        console.log(this.servicioModelGetId._id);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Algo no anda bien...',
+          text: '¡Revisa que la información este correcta!',
+          footer: '<a>No dejes campos vacios, ¡gracias!</a>'
+        })
+      }
+    )
+  }
+
   putServicios(){
     this._servicioService.editarServicio(this.servicioModelGetId, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
@@ -397,6 +422,34 @@ export class HabitacionesComponent implements OnInit {
       (error)=>{
         console.log(<any>error);
 
+      }
+    )
+  }
+
+  postCompraEvento(addForm,idEvento){
+    this._eventoService.comprarEvento(this.eventoModelGetId._id, this.eventolModelPost, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        console.log(this.idHotel);
+        this.getEventos(this.idHotel);
+        //this.getReserva();
+        addForm.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha realizado la Compra Correctamente',
+          text: '¡Gracias por confiar en nuestro Gran Hotel!',
+          footer: '<a>Nos alegra tu próxima Visita.</a>'
+        })
+      },
+      (error)=>{
+        console.log(<any>error);
+        console.log(this.servicioModelGetId._id);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Algo no anda bien...',
+          text: '¡Revisa que la información este correcta!',
+          footer: '<a>No dejes campos vacios, ¡gracias!</a>'
+        })
       }
     )
   }

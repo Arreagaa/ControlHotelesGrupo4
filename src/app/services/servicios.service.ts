@@ -44,5 +44,12 @@ export class ServicioService {
     return this._http.delete(this.url + '/eliminarServicio/' + id, { headers: headersToken })
   }
 
+  comprarServicio(id:String, ServicioModel: Servicio, token): Observable<any> {
+    let parametros = JSON.stringify(ServicioModel);
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.post(this.url + '/comprarServicio/' + id, parametros, {headers: headersToken})
+  }
+
 }
 

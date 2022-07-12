@@ -309,8 +309,11 @@
                   <i class="bi bi-file-earmark-minus"></i></button>
               </span>
 
-                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'" type="button">
-                  <i class="bi bi-building"></i> Agregar a Factura</button>
+                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' && servicio.disponibilidad == true" type="button" (click)="getServicioId(servicio._id)"
+                data-bs-toggle="modal" data-bs-target="#modalComprarServicio"><i class="bi bi-building"></i> Agregar a Factura</button>
+
+                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' && servicio.disponibilidad != true" type="button"
+                disabled><i class="bi bi-building"></i> Agregar a Factura</button>
 
             </div>
           </div>
@@ -364,7 +367,11 @@
                 </p>
               </div>
               <span>
-                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'" class="ready-btn">Agregar a Factura</a>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' && evento.disponibilidad == true" class="ready-btn" data-bs-toggle="modal" data-bs-target="#modalComprarEvento" (click)="getEventoId(evento._id)">Agregar a Factura</a>
+              </span>
+
+              <span disabled>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE' && evento.disponibilidad != true" class="ready-btn" style="opacity: 0.5;" disabled>Agregar a Factura</a>
               </span>
 
               <span>
@@ -372,7 +379,7 @@
               </span>
 
               <span>
-                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" (click)="deleteEvento(evento._id)" class="ready-btn">Eliminar Evento</a>
+                <a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_HOTEL'" (click)="deleteEvento(evento._id)" class="ready-btn" >Eliminar Evento</a>
               </span>
             </div>
           </div>
@@ -773,6 +780,84 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" (click)="postReserva(addForm, idRoom)" data-bs-dismiss="modal">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Comprar Servicio-->
+<div class="modal fade" id="modalComprarServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Comprar Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+
+          <div class="mb-3">
+            <label for="inputServicio" class="form-label">Confirmación del Nombre Servicio</label>
+            <input placeholder="Nombre Servicio" type="text" class="form-control" name="servicio" #servicio="ngModel" required
+            [(ngModel)]="servicioModelGetId.servicio" disabled="disable">
+              <div [hidden]="servicio.valid || servicio.pristine"
+                class="alert alert-danger">Se requiere colocar el nombre del Servicio para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Confirmación Precio del Servicio</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="servicioModelGetId.precio" disabled="disable">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar el precio del Servicio para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postCompraServicio(addForm, idServicio)" data-bs-dismiss="modal">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Comprar Evento-->
+<div class="modal fade" id="modalComprarEvento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Comprar Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+
+          <div class="mb-3">
+            <label for="inputEvento" class="form-label">Confirmación del Nombre Evento</label>
+            <input placeholder="Nombre Evento" type="text" class="form-control" name="evento" #evento="ngModel" required
+            [(ngModel)]="eventoModelGetId.evento" disabled="disable">
+              <div [hidden]="evento.valid || evento.pristine"
+                class="alert alert-danger">Se requiere colocar el nombre del Servicio para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Confirmación Precio del Servicio</label>
+            <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
+            [(ngModel)]="eventoModelGetId.precio" disabled="disable">
+              <div [hidden]="precio.valid || precio.pristine"
+                class="alert alert-danger">Se requiere colocar el precio del Servicio para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postCompraEvento(addForm, idEvento)" data-bs-dismiss="modal">Agregar</button>
       </div>
     </div>
   </div>
