@@ -15,16 +15,21 @@ import { EventoService } from 'src/app/services/eventos.service';
 import { Servicio } from 'src/app/models/servicio.model';
 import { ServicioService } from 'src/app/services/servicios.service';
 
+//RESERVACIONES
+import { Reservacion } from 'src/app/models/reservacion.model';
+import { ReservacionService } from 'src/app/services/reservacion.service';
+
 @Component({
   selector: 'app-habitaciones',
   templateUrl: './habitaciones.component.html',
   styleUrls: ['./habitaciones.component.scss'],
-  providers: [ HotelesService, UsuarioService, RoomService, ServicioService]
+  providers: [ HotelesService, UsuarioService, RoomService, ServicioService, ReservacionService]
 })
 export class HabitacionesComponent implements OnInit {
 
   public token;
   public idHotel;
+  public idRoom;
 
   //DATOS DEL HOTEL
   public hotelModelGet: Hotel;
@@ -45,8 +50,13 @@ export class HabitacionesComponent implements OnInit {
   public eventolModelPost: Evento;
   public eventoModelGetId: Evento;
 
+  //RESERVACION
+  public reservacionModelGet: Reservacion;
+  public reservacionlModelPost: Reservacion;
+  public reservacionModelGetId: Reservacion;
+
   constructor(private _hotelesService: HotelesService, public _usuarioService: UsuarioService, public _activatedRoute: ActivatedRoute, public _roomService : RoomService,
-    public _eventoService: EventoService, public _servicioService: ServicioService) {
+    public _eventoService: EventoService, public _servicioService: ServicioService, public _reservacionService: ReservacionService) {
     this.hotelModelGetId = new Hotel('','', '','', '', '',0,'');
     this.token = this._usuarioService.obtenerToken();
 
@@ -61,12 +71,17 @@ export class HabitacionesComponent implements OnInit {
     //SERVICIOS
     this.servicioModelPost = new Servicio('','',0,'');
     this.servicioModelGetId = new Servicio('','',0,'');
+
+    //RESERVACIONES
+    this.reservacionlModelPost = new Reservacion('',this.idHotel,'','','',0);
+    this.reservacionModelGetId = new Reservacion('','','','','',0);
   }
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((dataRuta)=>{
       this.getHotelId(dataRuta.get('idHotel'));
 
-      this.idHotel = dataRuta.get('idHotel')
+      this.idHotel = dataRuta.get('idHotel');
+      this.reservacionlModelPost = new Reservacion('',this.idHotel,'','','',0);
     });
 
     this._activatedRoute.paramMap.subscribe((dataRuta)=>{
@@ -85,10 +100,17 @@ export class HabitacionesComponent implements OnInit {
       this.getEventos(dataRuta.get('idHotel'));
 
       this.idHotel = dataRuta.get('idHotel')
-    })
-    //this.getRooms();
-    //this.getServicios();
-    //this.getEventos();
+    });
+
+    /*this._activatedRoute.paramMap.subscribe((dataRuta)=>{
+      this.getReservaId(dataRuta.get('idRoom'));
+      console.log(this.idRoom);
+      this.idRoom = dataRuta.get('idRoom')
+    });*/
+
+
+    this.getReserva();
+
   }
 
   //OBTENER DATOS DEL HOTEL POR SU ID
@@ -375,6 +397,64 @@ export class HabitacionesComponent implements OnInit {
       (error)=>{
         console.log(<any>error);
 
+      }
+    )
+  }
+
+  //RESERVACION
+
+  getReserva(){
+    this._reservacionService.obtenerRervaciones(this._usuarioService.obtenerToken()).subscribe(
+      (response) => {
+        this.reservacionModelGet = response.reservaciones;
+        console.log(response);
+        console.log(this.reservacionModelGet);
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  getReservaId(idReservacion){
+    this._reservacionService.obtenerRervacionId(idReservacion, this._usuarioService.obtenerToken()).subscribe(
+      (response) => {
+        this.reservacionModelGetId = response.reservaciones;
+        console.log(response);
+        console.log(this.reservacionModelGetId);
+        console.log(response.reservaciones);
+      },
+      (error)=>{
+        console.log(this.reservacionModelGetId);
+        console.log(<any>error)
+      }
+    )
+  }
+
+  postReserva(addForm, idRoom){
+    this._reservacionService.agregarReservacion(this.roomModelGetId._id, this.reservacionlModelPost, this._usuarioService.obtenerToken()).subscribe(
+      (response)=>{
+        console.log(response);
+        console.log(this.idHotel);
+        this.getRooms(this.idHotel);
+        this.getReserva();
+        addForm.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha realizado la Reservación Correctamente',
+          text: '¡Bienvenido a nuestro Gran Hotel!',
+          footer: '<a>Nos alegra tu próxima Visita.</a>'
+        })
+      },
+      (error)=>{
+        console.log(<any>error);
+
+        Swal.fire({
+          icon: 'warning',
+          title: 'Algo no anda bien...',
+          text: '¡Revisa que la información este correcta!',
+          footer: '<a>No dejes campos vacios, ¡gracias!</a>'
+        })
       }
     )
   }

@@ -202,8 +202,11 @@
                   <p class="card-text" style="text-align:center;" *ngIf="room.disponibilidad == true"><i class="bi bi-person-check-fill"></i> Disponible </p>
                   <p class="card-text" style="text-align:center;" *ngIf="room.disponibilidad != true"><i class="bi bi-person-check-fill"></i> No Disponible </p>
 
-                  <button class="btn btn-primary" >
+                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarReserva" *ngIf="room.disponibilidad == true" (click)="getRoomId(room._id)">
                     <i class="bi bi-calendar2-plus"></i> Reservar</button>
+
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarReserva" *ngIf="room.disponibilidad != true" disabled>
+                      <i class="bi bi-calendar2-plus"></i> Reservar</button>
 
               </div>
             </div>
@@ -248,7 +251,7 @@
       </div>
       <div class="col-lg-3 cta-btn-container text-center">
         <!--<a class="cta-btn align-middle" [routerLink]="['/Usuario/ServiciosHotel', hotelModelGet._id]">Ver Servicios</a>-->
-        <a class="cta-btn align-middle" routerLink="/Usuario/Hoteles">Ver Huéspedes</a>
+        <a class="cta-btn align-middle" routerLink="/Hotel/ReservacionesHotel">Ver Huéspedes</a>
       </div>
     </div>
 
@@ -304,7 +307,7 @@
                   <i class="bi bi-file-earmark-minus"></i></button>
               </span>
 
-                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
+                <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'" type="button">
                   <i class="bi bi-building"></i> Agregar a Factura</button>
 
             </div>
@@ -698,6 +701,53 @@
   </div>
 </div>
 
+<!--Modal Agregar Reserva-->
+<div class="modal fade" id="modalAgregarReserva" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #283a5ae6">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white">Agregar Reserva</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+
+          <div class="mb-3">
+            <label for="inputFechaInicio" class="form-label">Fecha de Inicio</label>
+            <input placeholder="Hospedaje" type="date" class="form-control" name="fechaInicio" #fechaInicio="ngModel" required
+            [(ngModel)]="reservacionlModelPost.fechaInicio">
+              <div [hidden]="fechaInicio.valid || fechaInicio.pristine"
+                class="alert alert-danger">Se requiere colocar el Nombre para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputTotalNoches" class="form-label">Noches de Hospedaje</label>
+            <input placeholder="Suite" type="number" class="form-control" name="totalNoches" #totalNoches="ngModel" required
+            [(ngModel)]="reservacionlModelPost.totalNoches">
+              <div [hidden]="totalNoches.valid || totalNoches.pristine"
+                class="alert alert-danger">Se requiere colocar la cantidad de Noches para continuar.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputIdHotel" class="form-label">Confirmación del Hotel</label>
+            <input placeholder="Identifación" type="text" class="form-control" name="idHotel" #idHotel="ngModel" required
+            [(ngModel)]="hotelModelGetId._id && reservacionlModelPost.idHotel" disabled="disable">
+              <div [hidden]="idHotel.valid || idHotel.pristine"
+                class="alert alert-danger">Se requiere colocar la Hotel Base para continuar.
+              </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postReserva(addForm, idRoom)" data-bs-dismiss="modal">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>
 </main>

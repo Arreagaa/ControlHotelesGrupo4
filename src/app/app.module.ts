@@ -24,6 +24,7 @@ import { ChartsModule } from '@rinminase/ng-charts';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
 import { FooterComponent } from './components/footer/footer.component';
+import { ReservacionesHotelComponent } from './components/reservaciones-hotel/reservaciones-hotel.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AdministracionUsuariosComponent,
     HabitacionesComponent,
     ServiciosHotelComponent,
+    ReservacionesHotelComponent,
   ],
   imports: [
     BrowserModule,

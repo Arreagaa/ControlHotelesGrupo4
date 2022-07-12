@@ -15,6 +15,7 @@ import { ServiciosHotelComponent } from './components/servicios-hotel/servicios-
 import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
 import { AdministradorHotelGuard } from './services/administracionHoteles.guard';
+import { ReservacionesHotelComponent } from './components/reservaciones-hotel/reservaciones-hotel.component';
 
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
@@ -49,7 +50,7 @@ const routes: Routes = [
   {
     path: 'Hotel', canActivate: [AdministradorHotelGuard], children:[
       {path: 'Habitaciones', component: HabitacionesComponent},
-
+      {path: 'ReservacionesHotel', component: ReservacionesHotelComponent},
     ]
   },
   { path: "**", component: LoginComponent }
