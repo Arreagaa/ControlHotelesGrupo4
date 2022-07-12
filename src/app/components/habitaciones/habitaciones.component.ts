@@ -65,12 +65,12 @@ export class HabitacionesComponent implements OnInit {
     this.roomModelGetId = new Room('','', '',0,true,'');
 
     //EVENTOS
-    this.eventolModelPost = new Evento('','', '',0,'');
-    this.eventoModelGetId = new Evento('','', '',0,'');
+    this.eventolModelPost = new Evento('','', '',0,true,'');
+    this.eventoModelGetId = new Evento('','', '',0,true,'');
 
     //SERVICIOS
-    this.servicioModelPost = new Servicio('','',0,'');
-    this.servicioModelGetId = new Servicio('','',0,'');
+    this.servicioModelPost = new Servicio('','',0,true,'');
+    this.servicioModelGetId = new Servicio('','',0,true,'');
 
     //RESERVACIONES
     this.reservacionlModelPost = new Reservacion('',this.idHotel,'','','',0);

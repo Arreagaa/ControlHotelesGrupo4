@@ -3,6 +3,7 @@ export class Servicio {
     public _id: String,
     public servicio: String,
     public precio: Number,
+    public disponibilidad: Boolean,
     public idHotel: String
   ){}
 }

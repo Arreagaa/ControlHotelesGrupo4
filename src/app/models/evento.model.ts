@@ -4,6 +4,7 @@ export class Evento {
     public evento: String,
     public descripcion: String,
     public precio: Number,
+    public disponibilidad: Boolean,
     public idHotel: String
   ){}
 }

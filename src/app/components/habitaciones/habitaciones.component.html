@@ -288,7 +288,9 @@
               <div class="section-title1">
                 <h4 class="card-title" style="text-align: center;">{{ servicio.servicio }}</h4>
               </div>
-              <h6 class="card-title" style="text-align: center;">¡Nuestros Servicios!</h6>
+              <h6 class="card-title" style="text-align: center;" *ngIf="servicio.disponibilidad == true">¡Nuestro Servicio Disponible!</h6>
+              <h6 class="card-title" style="text-align: center;" *ngIf="servicio.disponibilidad != true">¡Nuestro Servicio No Disponible!</h6>
+
               <br>
 
               <p class="card-text" style="justify-self: start;">Se pretende triunfar, atrapar clientes y que ellos vuelvan a elegirlos, habrá que escucharlos y prestar atención a
@@ -351,9 +353,14 @@
                 <h4>
                   <a>{{ evento.evento }}</a>
                 </h4>
-                <p style="text-align: justify;">
-                  {{evento.descripcion}}. Si has decidido realizar tu evento en un hotel, somos los indicados con el mejor servicio, mejor capacidad instalada y más comodidades.
-                  Recuerda que debe ser un lugar vistoso. Precio desde {{evento.precio}} USD.
+                <p style="text-align: justify;" *ngIf="evento.disponibilidad == true">
+                  {{evento.descripcion}}. Si has decidido realizar tu evento en un hotel, somos los indicados con el mejor servicio, mejor capacidad y más comodidades.
+                  Recuerda que debe ser un lugar vistoso. Precio desde {{evento.precio}} USD. Evento y Espacio Disponible.
+                </p>
+
+                <p style="text-align: justify;" *ngIf="evento.disponibilidad != true">
+                  {{evento.descripcion}}. Si has decidido realizar tu evento en un hotel, somos los indicados con el mejor servicio, mejor capacidad y más comodidades.
+                  Recuerda que debe ser un lugar vistoso. Evento y Espacio No Disponible. Precio desde {{evento.precio}} USD.
                 </p>
               </div>
               <span>
@@ -540,7 +547,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="inputPrecio" class="form-label">Precio de la Habitación</label>
+            <label for="inputPrecio" class="form-label">Precio del Evento</label>
             <input placeholder="USD" type="number" class="form-control" name="precio" #precio="ngModel" required
             [(ngModel)]="eventolModelPost.precio">
               <div [hidden]="precio.valid || precio.pristine"
@@ -604,6 +611,18 @@
                 class="alert alert-danger">Se requiere colocar el Precio Base para continuar.
               </div>
           </div>
+
+          <div class="form-group">
+            <label for="SelectDisponibilidad">Disponibilidad del Evento</label>
+            <select id="disponibilidad" style="width:100%; height: 2rem;" name="disponibilidad" #disponibilidad="ngModel"
+            [(ngModel)]="eventoModelGetId.disponibilidad" required>
+            <option value="true">Disponible</option>
+            <option value="false">No Disponible</option>
+          </select>
+
+        </div>
+
+
         </form>
       </div>
       <div class="modal-footer">
@@ -690,6 +709,16 @@
                 class="alert alert-danger">Se requiere colocar la Precio Base para continuar.
               </div>
           </div>
+
+          <div class="form-group">
+            <label for="SelectDisponibilidad">Disponibilidad del Servicio</label>
+            <select id="disponibilidad" style="width:100%; height: 2rem;" name="disponibilidad" #disponibilidad="ngModel"
+            [(ngModel)]="servicioModelGetId.disponibilidad" required>
+            <option value="true">Disponible</option>
+            <option value="false">No Disponible</option>
+          </select>
+
+        </div>
 
         </form>
       </div>
