@@ -40,7 +40,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-title">
-        <h2>Valores</h2>
+        <h2>Huéspedes</h2>
       </div>
 
       <div class="row content">
@@ -74,14 +74,23 @@
   <div class="container" data-aos="fade-up">
 
     <div class="section-title">
-      <h2>Huéspedes</h2>
+      <h2>reservaciones</h2>
     </div>
+
+    <section class="services section-bg">
+      <div class="container">
+        <div class="input-group">
+          <input  [(ngModel)]="buscarCliente" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon" />
+          <button type="button" class="btn btn-outline-primary">Buscar</button>
+        </div>
+      </div>
+    </section>
 
     <section class="services section-bg">
       <div class="container">
 
         <div class="row">
-          <div class="card mb-3 text-center" style="max-width: 625px" *ngFor="let reserva of reservacionModelGet" >
+          <div class="card mb-3 text-center" style="max-width: 625px" *ngFor="let reserva of reservacionModelGet | buscarCliente: buscarCliente" >
             <div class="row g-0">
               <div class="col-md-4">
                 <img ngClass="imagen-card" src="https://www.xtrafondos.com/wallpapers/vertical/edificios-en-ciudad-9082.jpg" class="img-fluid rounded-start" alt="...">

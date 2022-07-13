@@ -22,7 +22,7 @@ import { ServiciosHotelComponent } from './components/servicios-hotel/servicios-
 import { ChartsModule } from '@rinminase/ng-charts';
 
 import { BuscarPipe } from './pipes/buscar.pipe';
-import { BuscarPSucursalPipe } from './pipes/buscar-psucursal.pipe';
+import { BuscarClientePipe } from './pipes/buscarCliente.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReservacionesHotelComponent } from './components/reservaciones-hotel/reservaciones-hotel.component';
 
@@ -35,7 +35,7 @@ import { ReservacionesHotelComponent } from './components/reservaciones-hotel/re
     NavbarComponent,
     DashboardInicioComponent,
     BuscarPipe,
-    BuscarPSucursalPipe,
+    BuscarClientePipe,
 
     PerfilClienteComponent,
     HotelesComponent,

@@ -20,6 +20,7 @@ export class ReservacionesHotelComponent implements OnInit {
 
   public token;
   public idHotel;
+  public buscarCliente;
 
   //RESERVACION
   public reservacionModelGet: Reservacion;

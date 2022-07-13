@@ -43,8 +43,8 @@ img {
 }
 
 .card{
-  margin-left: 15px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .fix {
@@ -702,3 +702,12 @@ input[type="radio"]:checked ~ label {
   [data-tooltip]:hover::before,
   [data-tooltip]:hover::after
   { display:block;}
+
+  /*BARA DE BUSQUEDA*/
+
+.input-group{
+  width: 780px;
+  padding: 10 40px 10 25px;
+  position: center;
+  margin: 0 auto;
+}
