@@ -88,8 +88,10 @@
 
     <section class="services section-bg">
       <div class="container">
-
+        <button type="button" class="btn btn-outline-primary"  (click)="getReservaPdf()"> Reporte Reservaciones</button>
+          <br><br><br>
         <div class="row">
+
           <div class="card mb-3 text-center" style="max-width: 625px" *ngFor="let reserva of reservacionModelGet | buscarCliente: buscarCliente" >
             <div class="row g-0">
               <div class="col-md-4">
@@ -119,7 +121,6 @@
 
      </div>
     </section>
-
   </div>
 </section><!-- End Services Section -->
 

@@ -41,7 +41,7 @@
       </div>
       <div class="col-md-4">
           <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center experience"><span class="historial">Historial de Hospedaje</span>
+              <div class="d-flex justify-content-between align-items-center experience"><span class="historial"></span>
 
                 <div *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_CLIENTE'">
                   <span class="border px-3 p-1 add-experience" routerLink="/Usuario/Hoteles"><i class="fa fa-plus" style="text-align: center"></i>Regresar</span>
@@ -49,13 +49,11 @@
                 </div>
                 </div>
 
-              <div class="col-md-12"><label class="labels">Hoteles Visitados</label>
-                <input type="text" class="form-control" placeholder="experience" value="">
+              <div class="col-md-12"><label class="labels">Historial y Facturación</label><br><br>
+                <span class="border px-3 p-1 add-experience"[routerLink]="['/Usuario/FacturaHistorial', user._id]"><i class="fa fa-plus" style="text-align: center"></i>Visualizar</span>
               </div>
               <br>
-              <div class="col-md-12"><label class="labels">Preferencia en Servicios</label>
-                <input type="text" class="form-control" placeholder="additional details" value="">
-              </div>
+
           </div>
       </div>
   </div>

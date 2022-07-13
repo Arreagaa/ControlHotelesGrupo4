@@ -8,6 +8,7 @@ import { HotelesService } from 'src/app/services/hoteles.service';
 //RESERVACIONES
 import { Reservacion } from 'src/app/models/reservacion.model';
 import { ReservacionService } from 'src/app/services/reservacion.service';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reservaciones-hotel',
@@ -52,6 +53,20 @@ export class ReservacionesHotelComponent implements OnInit {
         this.reservacionModelGet = response.reservaciones;
         console.log(response);
         console.log(this.reservacionModelGet);
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  getReservaPdf(){
+    this._reservacionService.obtenerRervacionesReporte(this._usuarioService.obtenerToken()).subscribe(
+      (response) => {
+        this.reservacionModelGet = response.reservaciones;
+        console.log(response);
+        console.log(this.reservacionModelGet);
+        this.getReservaciones(this.idHotel)
       },
       (error)=>{
         console.log(<any>error)

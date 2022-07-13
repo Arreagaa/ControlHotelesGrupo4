@@ -37,4 +37,11 @@ export class ReservacionService {
 
     return this._http.get(this.url + '/obtenerReservacionesHotel/' + id, { headers: headersToken  })
   }
+
+  obtenerRervacionesReporte(token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    //return this._http.get(this.url + '/obtenerHoteles', { headers: headersToken })
+    return this._http.get(this.url + '/makePDF', { headers: headersToken })
+  }
 }

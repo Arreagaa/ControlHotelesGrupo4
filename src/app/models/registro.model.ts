@@ -1,4 +1,4 @@
-export class Reservacion {
+export class Registro {
   constructor(
     public _id: String,
     public nombreCompra: String,

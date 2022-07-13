@@ -25,6 +25,7 @@ import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarClientePipe } from './pipes/buscarCliente.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReservacionesHotelComponent } from './components/reservaciones-hotel/reservaciones-hotel.component';
+import { FacturaHistorialComponent } from './components/factura-historial/factura-historial.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ReservacionesHotelComponent } from './components/reservaciones-hotel/re
     HabitacionesComponent,
     ServiciosHotelComponent,
     ReservacionesHotelComponent,
+    FacturaHistorialComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { UsuarioGuard } from './services/usuario.guard';
 import { AdministradorGuard } from './services/administrador.guard';
 import { AdministradorHotelGuard } from './services/administracionHoteles.guard';
 import { ReservacionesHotelComponent } from './components/reservaciones-hotel/reservaciones-hotel.component';
+import { FacturaHistorialComponent } from './components/factura-historial/factura-historial.component';
 
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
@@ -35,6 +36,8 @@ const routes: Routes = [
       {path: 'Habitaciones/:idHotel', component: HabitacionesComponent},
 
       {path: 'ServiciosHotel', component: ServiciosHotelComponent},
+
+      {path: 'FacturaHistorial/:idCliente', component: FacturaHistorialComponent},
       //{path: 'ServiciosHotel/:idHotel', component: ServiciosHotelComponent},
     ]
   },
